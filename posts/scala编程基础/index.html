@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><title>
+    Scala基础 | 
+    
+    Mr.Su</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A description for the meta tag of the site
+    ">
+
+
+<meta property="og:title" content="scala基础" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://smydddd.github.io/posts/scala%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-06-14T15:40:46&#43;08:00" />
+<meta property="article:modified_time" content="2021-06-14T15:40:46&#43;08:00" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="scala基础"/>
+<meta name="twitter:description" content=""/>
+
+<meta itemprop="name" content="scala基础">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-06-14T15:40:46&#43;08:00" />
+<meta itemprop="dateModified" content="2021-06-14T15:40:46&#43;08:00" />
+<meta itemprop="wordCount" content="4399">
+<meta itemprop="keywords" content="scala," />
+<link rel="canonical" href="https://smydddd.github.io/posts/scala%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" />
+
+<link rel="icon" type="image/png" href="https://smydddd.github.io/image/favicon.ico">
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bulma.min.css">
+
+
+
+
+
+<script src=/js/ramium.js></script>
+<link rel="stylesheet" href=/css/ramium.css>
+
+
+
+
+
+</head>
+
+<body><nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href=/>
+      
+      <strong>Mr.Su </strong>
+      
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      
+      
+      <a class="navbar-item" href="/">家目录</a>
+      
+      
+      
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">博客</a>
+        <div class="navbar-dropdown">
+          
+          <a class="navbar-item" href="/tags/">标签</a>
+          
+          <a class="navbar-item" href="/posts/">文档</a>
+          
+        </div>
+      </div>
+      
+      
+      
+      <a class="navbar-item" href="/author/">Mr.Su个人生涯</a>
+      
+      
+    </div>
+
+    <div class="navbar-end">
+      
+      <a class="navbar-item navgithub" href="https://github.com/smydddd/smydddd.github.io/" target="_blank">
+        <i class="fa fa-github fa-2x"></i>
+      </a>
+      
+
+      
+    </div>
+  </div>
+</nav><div class="columns is-centered">
+        <div id="page-body" class="column is-7">
+
+<div class="content blog">
+    <h1>Scala基础</h1>
+
+    <div id="infobar" class="level is-mobile">
+        <div class="level-left">
+            
+            <div class="level-item">
+                <p class="subtitle info date">Jun 14, 2021
+                </p>
+            </div>
+            
+
+            <div class="level-item">
+                <p class="subtitle info">
+                    24 mins read
+                </p>
+            </div>
+        </div>
+        <div class="level-right is-hidden-touch">
+            <div class="tags">
+                
+                <a class="tag is-dark is-rounded" href="/tags/scala">Scala</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="tags is-hidden-desktop">
+        
+        <a class="tag is-dark is-rounded" href="/tags/scala">Scala</a>
+        
+    </div>
+
+    <div class="blog-text">
+        
+
+        <h3 align="center">2.11.0</h3>
+<h2 id="1基础语法">1、基础语法</h2>
+<h3 id="11-分号">1.1 分号</h3>
+<ul>
+<li>分号是表达式之间的分隔符，&quot;;&quot;</li>
+</ul>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">semicolonDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   *分号是表达式之间的分隔符，“;”
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#75715e">//1. 末尾的等号表明下一行还有未结束的代码
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">def</span> equalsign<span style="color:#f92672">(</span>s<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;equalign:&#34;</span> <span style="color:#f92672">+</span> s<span style="color:#f92672">)</span>
+  <span style="color:#75715e">//2. 末尾的花括号表明下一行还有未结束的代码
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">def</span> equalsign2<span style="color:#f92672">(</span>s<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;equalsign2:&#34;</span> <span style="color:#f92672">+</span> s<span style="color:#f92672">)</span>
+ <span style="color:#f92672">}</span>
+  <span style="color:#75715e">//3. 末尾的句号、逗号和操作符都可以表明。下一行还有未操作的代码
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">def</span> commas<span style="color:#f92672">(</span>s1<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">,</span>
+             s2<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Console</span><span style="color:#f92672">.</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;common:&#34;</span> <span style="color:#f92672">+</span> s1 <span style="color:#f92672">+</span>
+    <span style="color:#e6db74">&#34;,&#34;</span> <span style="color:#f92672">+</span> s2<span style="color:#f92672">)</span>
+    
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    equalsign<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">);</span>
+    equalsign2<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;B&#34;</span><span style="color:#f92672">)</span>
+    commas<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;D&#34;</span><span style="color:#f92672">);</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">equalsign<span style="color:#66d9ef">:</span><span style="color:#66d9ef">A</span>
+equalsign2<span style="color:#66d9ef">:</span><span style="color:#66d9ef">B</span>
+common<span style="color:#66d9ef">:</span><span style="color:#66d9ef">C</span><span style="color:#f92672">,</span>D
+</code></pre></div><h3 id="12-声明变量">1.2 声明变量</h3>
+<ul>
+<li>在声明变量时，Scala允许你决定改变量是不可变（只读），还是可变的（读写）。</li>
+<li>不可变的“变量”用val关键字声明,即为常量，可变量使用var关键字声明。</li>
+</ul>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">variableDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * 在声明变量时，Scala允许你决定改变量是不可变（只读），还是可变的（读写）。
+</span><span style="color:#75715e">     * 不可变的“变量”用val关键字声明,即为常量，可变量使用var关键字声明。
+</span><span style="color:#75715e">   * val变量在声明时必须被初始化
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">val</span> array<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">](</span><span style="color:#ae81ff">5</span><span style="color:#f92672">);</span>
+    array<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;test&#34;</span>
+    println<span style="color:#f92672">(</span>array<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">))</span>
+    array<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;tets1&#34;</span>
+    println<span style="color:#f92672">(</span>array<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">))</span>
+<span style="color:#75715e">//   scala的变量大部分指向堆内存对象的引用，下面代码会报错
+</span><span style="color:#75715e">//   val array = new Array[String](2)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">val</span> array1 <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">](</span><span style="color:#ae81ff">5</span><span style="color:#f92672">)</span>
+    array1<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;s&#34;</span>
+    println<span style="color:#f92672">(</span>array1<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">))</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">test
+tets1
+s
+</code></pre></div><h3 id="13-range">1.3 Range</h3>
+<ul>
+<li>Range的类型支持Int、Long、Float、Double、Char、BigInt(支持任意大小的整 数)、BigDecimal（支持任意大小的浮点数）。</li>
+<li>Range可以包含区间的上限，也可不包含区间上限，默认步长为1,可自定义设置步长 大小。</li>
+</ul>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">RangeDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//Int 类型的Range,包含区间上限，步长为1（从1到10）
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">val</span> inclusive <span style="color:#66d9ef">=</span> <span style="color:#ae81ff">1</span> to <span style="color:#ae81ff">10</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;to:&#34;</span> <span style="color:#f92672">+</span> inclusive<span style="color:#f92672">)</span>
+    <span style="color:#75715e">// Int类型的Range，不包含区间上限，步长为1（从1到9）
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">val</span> range <span style="color:#66d9ef">=</span> <span style="color:#ae81ff">1</span> until <span style="color:#f92672">(</span><span style="color:#ae81ff">10</span><span style="color:#f92672">)</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;until:&#34;</span><span style="color:#f92672">+</span>range<span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">val</span> range1 <span style="color:#66d9ef">=</span> <span style="color:#ae81ff">1</span> to <span style="color:#ae81ff">10</span> by <span style="color:#ae81ff">3</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;range1步长为3:&#34;</span><span style="color:#f92672">+</span>range1<span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">val</span> range2<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Range</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> to <span style="color:#ae81ff">1</span> by <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;range2步长为-3:&#34;</span><span style="color:#f92672">+</span>range2<span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">val</span> range3<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Range</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> to <span style="color:#ae81ff">10</span> by <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;range3步长为-2:&#34;</span><span style="color:#f92672">+</span>range3<span style="color:#f92672">)</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">to<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Range</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">1</span><span style="color:#f92672">,</span> <span style="color:#960050;background-color:#1e0010">2</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">6</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">7</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">9</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">)</span>
+until<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Range</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">1</span><span style="color:#f92672">,</span> <span style="color:#960050;background-color:#1e0010">2</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">6</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">7</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">9</span><span style="color:#f92672">)</span>
+range1步长为3<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Range</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">1</span><span style="color:#f92672">,</span> <span style="color:#960050;background-color:#1e0010">4</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">7</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">)</span>
+range2步长为<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#66d9ef">:</span><span style="color:#66d9ef">Range</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">10</span><span style="color:#f92672">,</span> <span style="color:#960050;background-color:#1e0010">7</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">)</span>
+range3步长为<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#66d9ef">:</span><span style="color:#66d9ef">Range</span><span style="color:#f92672">()</span>
+</code></pre></div><h3 id="14-偏函数">1.4 偏函数</h3>
+<ul>
+<li>只处理与至少一个case语句匹配的输入。</li>
+<li>偏函数中只能使用case语句，而整个函数必须用花括号包围。</li>
+<li>偏函数被调用，而函数的输入与所有语句都不匹配，系统就会抛出一个MatchError运 行时错误</li>
+</ul>
+<h3 id="15-声明方法">1.5 声明方法</h3>
+<h4 id="151-方法默认值和命名参数列表">1.5.1 方法默认值和命名参数列表</h4>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">method_declaration_demo1</span> <span style="color:#f92672">{</span>
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * 定义point,并提供默认的初始化值
+</span><span style="color:#75715e">   * 新的shift方法，用于从现有的Point方法中对“点“进行平移，从而创建一个新的
+</span><span style="color:#75715e">Point对象
+</span><span style="color:#75715e">   * copy方法也是case类自动创建
+</span><span style="color:#75715e">   * @param x
+</span><span style="color:#75715e">   * @param y
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point</span><span style="color:#f92672">(</span>x<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Double</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span><span style="color:#f92672">,</span>y<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Double</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span><span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">def</span> shift<span style="color:#f92672">(</span>deltax<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Double</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span><span style="color:#f92672">,</span> deltay<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Double</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Point</span> <span style="color:#f92672">=</span>
+      copy<span style="color:#f92672">(</span>x<span style="color:#f92672">+</span>deltax<span style="color:#f92672">,</span>y<span style="color:#f92672">+</span>deltay<span style="color:#f92672">)</span>
+ <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">val</span> p1 <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Point</span><span style="color:#f92672">(</span>x <span style="color:#66d9ef">=</span> <span style="color:#ae81ff">3.3</span><span style="color:#f92672">,</span> y <span style="color:#66d9ef">=</span> <span style="color:#ae81ff">4.4</span><span style="color:#f92672">)</span> <span style="color:#75715e">//显示使用命名参数列表
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">val</span> p2<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Point</span> <span style="color:#f92672">=</span> p1<span style="color:#f92672">.</span>copy<span style="color:#f92672">(</span>y <span style="color:#66d9ef">=</span> <span style="color:#ae81ff">6.6</span><span style="color:#f92672">)</span> <span style="color:#75715e">//指定新的y值，创建新实例
+</span><span style="color:#75715e"></span>    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;p1的值：&#34;</span><span style="color:#f92672">+</span>p1<span style="color:#f92672">)</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;p2的值:&#34;</span> <span style="color:#f92672">+</span> p2<span style="color:#f92672">)</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">p1的值<span style="color:#960050;background-color:#1e0010">：</span><span style="color:#a6e22e">Point</span><span style="color:#f92672">(</span><span style="color:#ae81ff">3.3</span><span style="color:#f92672">,</span><span style="color:#ae81ff">4.4</span><span style="color:#f92672">)</span>
+p2的值<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Point</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">3</span><span style="color:#66d9ef">.</span><span style="color:#960050;background-color:#1e0010">3</span><span style="color:#f92672">,</span><span style="color:#960050;background-color:#1e0010">6</span><span style="color:#66d9ef">.</span><span style="color:#960050;background-color:#1e0010">6</span><span style="color:#f92672">)</span>
+</code></pre></div><h4 id="152-嵌套犯法的定义与递归">1.5.2 嵌套犯法的定义与递归</h4>
+<ul>
+<li>方法的定义可以嵌套</li>
+<li>将辅助函数嵌套定义在原方法中，他们对外层的代码不可见</li>
+</ul>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">package</span> basis
+<span style="color:#66d9ef">import</span> scala.tools.cmd.Spec.Accumulator
+<span style="color:#66d9ef">object</span> <span style="color:#a6e22e">nested_method_demo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> factorial<span style="color:#f92672">(</span>i<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Long</span><span style="color:#f92672">={</span>
+    <span style="color:#66d9ef">def</span> fact<span style="color:#f92672">(</span>i<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span>accumulator<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Long</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">)</span> accumulator
+      <span style="color:#66d9ef">else</span> fact<span style="color:#f92672">(</span>i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> i <span style="color:#f92672">*</span> accumulator<span style="color:#f92672">)</span>
+   <span style="color:#f92672">}</span>
+    fact<span style="color:#f92672">(</span>i<span style="color:#f92672">,</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span>
+ <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+   <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> to <span style="color:#ae81ff">5</span><span style="color:#f92672">)</span> foreach<span style="color:#f92672">(</span>i <span style="color:#66d9ef">=&gt;</span> println<span style="color:#f92672">(</span>factorial<span style="color:#f92672">(</span>i<span style="color:#f92672">)))</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h6>注:什么时候需要显示类型注解</h6>
+<ol>
+<li>声明了可变的var变量或不可变的val变量，没有进行初始化</li>
+<li>所有的方法参数</li>
+<li>方法的返回值类型
+<ol>
+<li>在方法中明显地使用了return</li>
+<li>递归方法</li>
+<li>两个或多个方法重载</li>
+<li>Scala推断出的类型比你期望的类型更为宽泛</li>
+</ol>
+</li>
+</ol>
+<h3 id="16-字面量">1.6 字面量</h3>
+<h4 id="161-整数字面量">1.6.1 整数字面量</h4>
+<ul>
+<li>整数字面量可以一十进制、十六进制或八进制的形式出现·</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:left">格式</th>
+<th style="text-align:center">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">十进制</td>
+<td style="text-align:left">0或一个非零值（0-9）</td>
+<td style="text-align:center">0,1,321</td>
+</tr>
+<tr>
+<td style="text-align:center">十六进制</td>
+<td style="text-align:left">0x后面跟上一个或多个十六进制数字（0-9，A-F,a-f）</td>
+<td style="text-align:center">0xFF,0x1a3b</td>
+</tr>
+<tr>
+<td style="text-align:center">八进制</td>
+<td style="text-align:left">0后面跟上一个或多个八进制数字（0-7）</td>
+<td style="text-align:center">013,077</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>整数字面量的取值范围（包含边界）
+<table>
+<thead>
+<tr>
+<th>目标类型</th>
+<th>下限（包含）</th>
+<th>上限(包含)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Long</td>
+<td>-2^63</td>
+<td>-2^63-1</td>
+</tr>
+<tr>
+<td>Int</td>
+<td>-2^31</td>
+<td>-2^31-1</td>
+</tr>
+<tr>
+<td>Short</td>
+<td>-2^15</td>
+<td>-2^15-1</td>
+</tr>
+<tr>
+<td>Char</td>
+<td>0</td>
+<td>2^16-1</td>
+</tr>
+<tr>
+<td>Byte</td>
+<td>-2^7</td>
+<td>2^7-1</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h4 id="162-浮点字面量">1.6.2 浮点字面量</h4>
+<ul>
+<li>浮点数字面量的形式：首先是一个可省略的负号，然后是0或多个数字后面跟上一个 点（.）,后面在跟上一个或多个数字。</li>
+<li>对于Float类型的字面量，还要在后面加上一F或f,否则会被认为是Double，可以在数 字后面加上D或d，明确表示字面量为Double。</li>
+<li>浮点数字面量可以用指数便是，指数部分的形式为E或e后面跟上可选的+或-</li>
+</ul>
+<h4 id="163-布尔型字面量">1.6.3 布尔型字面量</h4>
+<ul>
+<li>布尔型字面量可以为true或false。这两个字面量赋值的变量，其类型将被推断为 Boolean。</li>
+</ul>
+<h4 id="164-字符字面量">1.6.4 字符字面量</h4>
+<ul>
+<li>
+<p>字符字面量要么是单引号内一个可打印的Unicode字符,要么是一个转义序列。</p>
+</li>
+<li>
+<p>值在0~255的Unicode字符也可以用八进制数字的转义表示，即一个反斜杠（)后面跟 上最多3个八进制数字字符。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>转义序列</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\b</td>
+<td>退格(BS)</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>水平制表符(HT)</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行(LF)</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>表格换行</td>
+</tr>
+<tr>
+<td>\&quot;</td>
+<td>双引号</td>
+</tr>
+<tr>
+<td>\'</td>
+<td>单引号</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>\\</td>
+<td>反斜杠</td>
+</tr>
+</tbody>
+</table>
+<h4 id="165-字符串字面量">1.6.5 字符串字面量</h4>
+<ul>
+<li>字符串字面量是被双引号或者三重双引号包围的字符串序列，如：“”“&hellip;.”“”。</li>
+<li>双引号包围的字符串字面量，允许出现的字符与字符字面量相同。</li>
+<li>如果双引号出现在字符串中则必须使用反斜杠进行转义。</li>
+</ul>
+<h4 id="166-符号字面量">1.6.6 符号字面量</h4>
+<ul>
+<li>两个同名的符号会指向内存中的同一对象。</li>
+<li>符号字面量是单引号（'）后跟上一个或多个数字、字母、下划线（&quot;_&quot;）,但第一个字 符不能为数字。</li>
+</ul>
+<h3 id="17-optionsome和none">1.7 Option、Some和None</h3>
+<ul>
+<li>Option、Some和None他们可以表示”有值&quot;或者&quot;没有值&quot;。</li>
+<li>Option有两个具体的子类Some和None，Some表示有值，None表示没有值。</li>
+</ul>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">optionDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">val</span> stringToString <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">(</span>
+      <span style="color:#e6db74">&#34;Alabama&#34;</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Montgomery&#34;</span><span style="color:#f92672">,</span>
+      <span style="color:#e6db74">&#34;Alaska&#34;</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Juneau&#34;</span><span style="color:#f92672">,</span>
+      <span style="color:#e6db74">&#34;Wyoming&#34;</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Cheyenen&#34;</span>
+   <span style="color:#f92672">)</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Get then capitals wrapped in Option:&#34;</span><span style="color:#f92672">)</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Alabama:&#34;</span> <span style="color:#f92672">+</span> stringToString<span style="color:#f92672">.</span>get<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Alabama&#34;</span><span style="color:#f92672">))</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Alaska:&#34;</span> <span style="color:#f92672">+</span> stringToString<span style="color:#f92672">.</span>get<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Alaska&#34;</span><span style="color:#f92672">))</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Unlonwn:&#34;</span> <span style="color:#f92672">+</span> stringToString<span style="color:#f92672">.</span>get<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Unlonwn&#34;</span><span style="color:#f92672">))</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Get the capitals warpped out fo the Options:&#34;</span><span style="color:#f92672">)</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Alabama:&#34;</span> <span style="color:#f92672">+</span> stringToString<span style="color:#f92672">.</span>get<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Alabama&#34;</span><span style="color:#f92672">).</span>get<span style="color:#f92672">)</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Alaska:&#34;</span> <span style="color:#f92672">+</span>
+stringToString<span style="color:#f92672">.</span>get<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Alaska&#34;</span><span style="color:#f92672">).</span>getOrElse<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Oops!&#34;</span><span style="color:#f92672">))</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Unlonwn:&#34;</span> <span style="color:#f92672">+</span>
+stringToString<span style="color:#f92672">.</span>get<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Unlonwn&#34;</span><span style="color:#f92672">).</span>getOrElse<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Oops2!&#34;</span><span style="color:#f92672">))</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#a6e22e">Get</span> then capitals wrapped in <span style="color:#a6e22e">Option</span><span style="color:#66d9ef">:</span>
+<span style="color:#66d9ef">Alabama:Some</span><span style="color:#f92672">(</span><span style="color:#66d9ef">Montgomery</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">Alaska:Some</span><span style="color:#f92672">(</span><span style="color:#66d9ef">Juneau</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">Unlonwn:None</span>
+<span style="color:#a6e22e">Get</span> the capitals warpped out fo the <span style="color:#a6e22e">Options</span><span style="color:#66d9ef">:</span>
+<span style="color:#66d9ef">Alabama:Montgomery</span>
+<span style="color:#a6e22e">Alaska</span><span style="color:#66d9ef">:</span><span style="color:#66d9ef">Juneau</span>
+<span style="color:#a6e22e">Unlonwn</span><span style="color:#66d9ef">:</span><span style="color:#66d9ef">Oops2!</span>
+</code></pre></div><p>1.8 导入类型及其成员</p>
+<ul>
+<li>使用下划线（_）当作通配符</li>
+<li>import 语句可以放在任何位置上</li>
+<li>支持别名</li>
+<li>导入的路径是相对的，必须保证库所在的路径在CLASSPATH</li>
+</ul>
+<h2 id="2要点详解">2、要点详解</h2>
+<h4 id="21-操作符重载">2.1 操作符重载</h4>
+<ul>
+<li>使用中缀表示法表示单参数方法时，其中的点号和括号可以省略，因此１＋２等价于 １.＋（２）</li>
+<li>可用的字符
+<ul>
+<li>除了括号类字符、分隔符之外。其他所有可打印的ASCII字符均可出现在Scala标 示符中</li>
+<li>插入字符：(,)、[,]、{,and}</li>
+<li>分隔符：'、‘、&quot;、. 以及，。</li>
+</ul>
+</li>
+<li>不能使用保留字，例如（_） _</li>
+<li>_普通标示符&mdash;&ndash;字母、数字、$、_和操作符的组合</li>
+<li>普通标示符：操作符</li>
+<li>使用反引号定义标示符</li>
+<li>模式匹配标示符</li>
+</ul>
+<h4 id="22-优先级规则">2.2 优先级规则</h4>
+<h6>优先级从高到低</h6>
+<table>
+<thead>
+<tr>
+<th>所有字母</th>
+<th>|</th>
+<th>^</th>
+<th>&amp;</th>
+<th>&lt;&gt;</th>
+<th>=!</th>
+<th>:</th>
+<th>+-</th>
+<th>*/%</th>
+<th>其他特殊字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>当“=”用来赋值操作时，该符号的优先级最低</li>
+</ul>
+<h4 id="23-if语句">2.3 if语句</h4>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">ifDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+   <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">){</span>
+     println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello form 1984.&#34;</span><span style="color:#f92672">)</span>
+   <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">){</span>
+     println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello from Remedial Math class?&#34;</span><span style="color:#f92672">)</span>
+   <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span><span style="color:#f92672">{</span>
+     println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello from a non-Orwellian future.&#34;</span><span style="color:#f92672">)</span>
+   <span style="color:#f92672">}</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">hello from a non<span style="color:#f92672">-</span><span style="color:#a6e22e">Orwellian</span> future<span style="color:#f92672">.</span>
+</code></pre></div><ul>
+<li>scala不支持三元表达式</li>
+</ul>
+<h4 id="24-for推导式">2.4 for推导式</h4>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">forDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">val</span> strings <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;B&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;C&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;D&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>i <span style="color:#66d9ef">&lt;-</span> strings<span style="color:#f92672">){</span>
+      println<span style="color:#f92672">(</span>i<span style="color:#f92672">)</span>
+   <span style="color:#f92672">}</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">A
+B
+C
+D
+</code></pre></div><h4 id="25-生成器表达式">2.5 生成器表达式</h4>
+<ul>
+<li>像 i &lt;- strings这样的表达式也被称为生成器表达式。</li>
+<li>该表达式会基于集合生成单独的数值。</li>
+</ul>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">forDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">val</span> strings <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;B&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;C&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;D&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>i <span style="color:#66d9ef">&lt;-</span> strings<span style="color:#f92672">){</span>
+      println<span style="color:#f92672">(</span>i<span style="color:#f92672">)</span>
+   <span style="color:#f92672">}</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">A
+B
+C
+D
+</code></pre></div><h4 id="26-yield关键字">2.6 yield关键字</h4>
+<ol>
+<li>使用yeild关键字能在for表达式中生成新的集合。</li>
+<li>使用大括号代替圆括号，用相似的方法把参数列表封装在大括号中。</li>
+</ol>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">yieldDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">val</span> list <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;zhejiang hangzhou&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;zhejiang ningbo&#34;</span><span style="color:#f92672">,</span>
+<span style="color:#e6db74">&#34;shanghai&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;beijng&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">val</span> strings<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">for</span> <span style="color:#f92672">{</span>
+      i <span style="color:#66d9ef">&lt;-</span> list
+      <span style="color:#66d9ef">if</span> i<span style="color:#f92672">.</span>contains<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;zhejiang&#34;</span><span style="color:#f92672">)</span>
+   <span style="color:#f92672">}</span> <span style="color:#66d9ef">yield</span> i
+    println<span style="color:#f92672">(</span>strings<span style="color:#f92672">)</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#a6e22e">List</span><span style="color:#f92672">(</span>zhejiang hangzhou<span style="color:#f92672">,</span> zhejiang ningbo<span style="color:#f92672">)</span>
+</code></pre></div><h4 id="27-while循环">2.7 while循环</h4>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">whileDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">var</span> j <span style="color:#66d9ef">=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">while</span><span style="color:#f92672">(</span>j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">){</span>
+      print<span style="color:#f92672">(</span>j <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">)</span>
+      j <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>
+   <span style="color:#f92672">}</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span> 
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span><span style="color:#ae81ff">3</span><span style="color:#f92672">,</span><span style="color:#ae81ff">5</span><span style="color:#f92672">,</span><span style="color:#ae81ff">7</span><span style="color:#f92672">,</span><span style="color:#ae81ff">9</span><span style="color:#f92672">,</span>
+</code></pre></div><h4 id="28-do-while">2.8 do-while</h4>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">do_while_demo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">var</span> count <span style="color:#66d9ef">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">do</span> <span style="color:#f92672">{</span>
+      count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+      print<span style="color:#f92672">(</span>count<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;|&#34;</span><span style="color:#f92672">)</span>
+   <span style="color:#f92672">}</span><span style="color:#66d9ef">while</span><span style="color:#f92672">(</span>count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">)</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#ae81ff">1</span><span style="color:#f92672">|</span><span style="color:#ae81ff">2</span><span style="color:#f92672">|</span><span style="color:#ae81ff">3</span><span style="color:#f92672">|</span><span style="color:#ae81ff">4</span><span style="color:#f92672">|</span><span style="color:#ae81ff">5</span><span style="color:#f92672">|</span><span style="color:#ae81ff">6</span><span style="color:#f92672">|</span><span style="color:#ae81ff">7</span><span style="color:#f92672">|</span><span style="color:#ae81ff">8</span><span style="color:#f92672">|</span><span style="color:#ae81ff">9</span><span style="color:#f92672">|</span><span style="color:#ae81ff">10</span><span style="color:#f92672">|</span>
+</code></pre></div><h4 id="29-条件操作符">2.9 条件操作符</h4>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>操作</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;&amp;</td>
+<td>和操作</td>
+<td>操作符左边和右边的值都为true。只有当操作符左边的值为真时才会 评估右边的值是否为真</td>
+</tr>
+<tr>
+<td>||</td>
+<td>或操 作</td>
+<td>操作符左边和右边至少有一个为true。只有当操作符左边的值为false 时才会评估右边的值是否为真</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+<td>操作符左边的值应大于右边的值</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于 等于</td>
+<td>操作符左边的值应大于等于右边的值</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于 等于</td>
+<td>操作符左边的值应小于等于右边的值</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+<td>操作符左边的值应小于右边的值</td>
+</tr>
+<tr>
+<td>==</td>
+<td>等于</td>
+<td>操作符左边的值等于右边的值</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Scala使用==符执行逻辑意义上的相等检查，该操作符调用了equals方法</li>
+</ul>
+<h4 id="210-使用trycatch和final句子">2.10 使用try,catch和final句子</h4>
+<ol>
+<li>Scala不支持已被视为失败设计的检查型异常。</li>
+<li>Scala将异常处理作为另一类模式匹配进行处理。</li>
+</ol>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">import</span> java.io.<span style="color:#f92672">{</span><span style="color:#a6e22e">FileNotFoundException</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">FileReader</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">IOException</span><span style="color:#f92672">}</span>
+<span style="color:#66d9ef">object</span> <span style="color:#a6e22e">abnormalDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">val</span> f <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">FileReader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;input.txt&#34;</span><span style="color:#f92672">)</span>
+   <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">case</span> ex<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">FileNotFoundException</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">{</span>
+        println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Missing file exception&#34;</span><span style="color:#f92672">)</span>
+     <span style="color:#f92672">}</span>
+      <span style="color:#66d9ef">case</span> ex<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">IOException</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">{</span>
+        println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;IO Exception&#34;</span><span style="color:#f92672">)</span>
+     <span style="color:#f92672">}</span>
+   <span style="color:#f92672">}</span> <span style="color:#66d9ef">finally</span> <span style="color:#f92672">{</span>
+      println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Exiting finally...&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#a6e22e">Missing</span> file exception
+<span style="color:#a6e22e">Exiting</span> <span style="color:#66d9ef">finally</span><span style="color:#f92672">...</span>
+</code></pre></div><h4 id="211-惰性赋值">2.11 惰性赋值</h4>
+<ul>
+<li>应用场景</li>
+<li>表达式执行代价昂贵（数据库连接）</li>
+<li>缩短模块启动时间</li>
+<li>为了确保对象中其他的字段的初始化过程能优先执行</li>
+</ul>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">lazyDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">lazy</span> <span style="color:#66d9ef">val</span> resource <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=</span> init<span style="color:#f92672">()</span>
+    <span style="color:#66d9ef">def</span> init<span style="color:#f92672">()={</span>
+      <span style="color:#75715e">//执行某些代价昂贵的操作
+</span><span style="color:#75715e"></span>      <span style="color:#ae81ff">0</span>
+   <span style="color:#f92672">}</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>lazy关键字只执行一次</li>
+</ul>
+<h4 id="212-枚举">2.12 枚举</h4>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">enumerationDemo</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Enumeration</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">enumerationDemo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Value</span>
+  <span style="color:#66d9ef">val</span> doberman <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Value</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Doberman Pinscher&#34;</span><span style="color:#f92672">)</span>
+  <span style="color:#66d9ef">val</span> yorkie <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Value</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Yorkshire Terrier&#34;</span><span style="color:#f92672">)</span>
+  <span style="color:#66d9ef">val</span> socttosh <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Value</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Scottish Terrier&#34;</span><span style="color:#f92672">)</span>
+  <span style="color:#66d9ef">val</span> dane <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Value</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Great Dane&#34;</span><span style="color:#f92672">)</span>
+  <span style="color:#66d9ef">val</span> portie <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Value</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Portuguese Water Dog&#34;</span><span style="color:#f92672">)</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">import</span> enumerationDemo._
+    <span style="color:#75715e">//打印所有
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>i <span style="color:#66d9ef">&lt;-</span> enumerationDemo<span style="color:#f92672">.</span>values<span style="color:#f92672">)</span> println<span style="color:#f92672">(</span><span style="color:#e6db74">s&#34;</span><span style="color:#e6db74">${</span>i<span style="color:#f92672">.</span>id<span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">${</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">)</span>
+    println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;=================数据筛选=====================&#34;</span><span style="color:#f92672">)</span>
+      enumerationDemo<span style="color:#f92672">.</span>values filter<span style="color:#f92672">(</span><span style="color:#66d9ef">_</span><span style="color:#f92672">.</span>toString<span style="color:#f92672">.</span>endsWith<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Terrier&#34;</span><span style="color:#f92672">))</span>
+foreach println
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#ae81ff">1</span><span style="color:#66d9ef">:</span><span style="color:#66d9ef">Yorkshire</span> <span style="color:#66d9ef">Terrier</span>
+<span style="color:#ae81ff">2</span><span style="color:#66d9ef">:</span><span style="color:#66d9ef">Scottish</span> <span style="color:#66d9ef">Terrier</span>
+<span style="color:#ae81ff">3</span><span style="color:#66d9ef">:</span><span style="color:#66d9ef">Great</span> <span style="color:#66d9ef">Dane</span>
+<span style="color:#ae81ff">4</span><span style="color:#66d9ef">:</span><span style="color:#66d9ef">Portuguese</span> <span style="color:#66d9ef">Water</span> <span style="color:#66d9ef">Dog</span>
+<span style="color:#f92672">=================</span>数据筛选<span style="color:#f92672">=====================</span>
+<span style="color:#a6e22e">Yorkshire</span> <span style="color:#a6e22e">Terrier</span>
+<span style="color:#a6e22e">Scottish</span> <span style="color:#a6e22e">Terrier</span>
+</code></pre></div><h3 id="3模式匹配">3、模式匹配</h3>
+<h4 id="31-简单匹配">3.1 简单匹配</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">match_boolean</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">val</span> booleans <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Seq</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">)</span>
+      <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>bool <span style="color:#66d9ef">&lt;-</span> booleans<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">val</span> which <span style="color:#66d9ef">=if</span> <span style="color:#f92672">(</span>bool<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;head&#34;</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;tails&#34;</span>
+        println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Got&#34;</span> <span style="color:#f92672">+</span> which<span style="color:#f92672">)</span>
+     <span style="color:#f92672">}</span>
+    
+   <span style="color:#f92672">}</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="32-match的值变量和类型">3.2 match的值、变量和类型</h4>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">match_boolean_demo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+      <span style="color:#75715e">// 由于序列元素包含不同的类型，因此序列的类型为Seq[Any]
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">val</span> seq <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Seq</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">2.7</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;one&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;two&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;four&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>x <span style="color:#66d9ef">&lt;-</span> seq<span style="color:#f92672">){</span>
+        <span style="color:#75715e">// x的类型为Any
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">val</span> str<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=</span> x <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+          <span style="color:#75715e">// 如果x等于1则匹配
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#e6db74">&#34;int 1&#34;</span>
+          <span style="color:#75715e">// 匹配除1外的其他任意整数值。将x的值安全的转为Int，并赋值给i
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">case</span> i<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;other int:&#34;</span> <span style="color:#f92672">+</span> i
+           <span style="color:#75715e">// 匹配所有的Double类型，x的值被赋给Double型变量d
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">case</span> d<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Double</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;a double:&#34;</span> <span style="color:#f92672">+</span> x
+          <span style="color:#75715e">// 匹配字符串“one”
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;one&#34;</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#e6db74">&#34;string one&#34;</span>
+          <span style="color:#75715e">// 匹配除“one”外的其他任意字符串，x的值被赋给了String类型的变量x
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">case</span> s<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;other string:&#34;</span> <span style="color:#f92672">+</span> s
+          <span style="color:#75715e">// 匹配其他任意输入，x的值被赋给unexpected这个变量
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">case</span> unexpected <span style="color:#66d9ef">=&gt;</span> <span style="color:#e6db74">&#34;unexpected value:&#34;</span> <span style="color:#f92672">+</span> unexpected
+     <span style="color:#f92672">}</span>
+      println<span style="color:#f92672">(</span>str<span style="color:#f92672">)</span>
+   <span style="color:#f92672">}</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">int <span style="color:#ae81ff">1</span>
+other int<span style="color:#66d9ef">:</span><span style="color:#960050;background-color:#1e0010">2</span>
+<span style="color:#66d9ef">a</span> <span style="color:#66d9ef">double:</span><span style="color:#960050;background-color:#1e0010">2</span><span style="color:#66d9ef">.</span><span style="color:#960050;background-color:#1e0010">7</span>
+<span style="color:#66d9ef">string</span> <span style="color:#66d9ef">one</span>
+other string<span style="color:#66d9ef">:</span><span style="color:#66d9ef">two</span>
+other string<span style="color:#66d9ef">:</span><span style="color:#66d9ef">four</span>
+</code></pre></div><h4 id="33-case中的gurad语句">3.3 case中的gurad语句</h4>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">case_guard_demo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+   <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>i <span style="color:#66d9ef">&lt;-</span> <span style="color:#a6e22e">Seq</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span><span style="color:#ae81ff">2</span><span style="color:#f92672">,</span><span style="color:#ae81ff">3</span><span style="color:#f92672">,</span><span style="color:#ae81ff">4</span><span style="color:#f92672">)){</span>
+     i <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+       <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">if</span> i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">=&gt;</span> println<span style="color:#f92672">(</span><span style="color:#e6db74">s&#34;even: </span><span style="color:#e6db74">$i</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">)</span>
+       <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">=&gt;</span> println<span style="color:#f92672">(</span><span style="color:#e6db74">s&#34;odd: </span><span style="color:#e6db74">$i</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">)</span>
+     <span style="color:#f92672">}</span>
+   <span style="color:#f92672">}</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">odd<span style="color:#66d9ef">:</span> <span style="color:#960050;background-color:#1e0010">1</span>
+<span style="color:#66d9ef">even:</span> <span style="color:#960050;background-color:#1e0010">2</span>
+<span style="color:#66d9ef">odd:</span> <span style="color:#960050;background-color:#1e0010">3</span>
+<span style="color:#66d9ef">even:</span> <span style="color:#960050;background-color:#1e0010">4</span>
+</code></pre></div><h4 id="34-case类的匹配">3.4 case类的匹配</h4>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">caseDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Address</span><span style="color:#f92672">(</span>street<span style="color:#66d9ef">:</span><span style="color:#66d9ef">String</span><span style="color:#f92672">,</span>city<span style="color:#66d9ef">:</span><span style="color:#66d9ef">String</span><span style="color:#f92672">,</span>country<span style="color:#66d9ef">:</span><span style="color:#66d9ef">String</span><span style="color:#f92672">)</span>
+  <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span>name<span style="color:#66d9ef">:</span><span style="color:#66d9ef">String</span><span style="color:#f92672">,</span>age<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span>address<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Address</span><span style="color:#f92672">)</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">val</span> alice<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Person</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Alice&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">25</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">Address</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;1 Scala Lane&#34;</span><span style="color:#f92672">,</span>
+<span style="color:#e6db74">&#34;Chicago&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;USA&#34;</span><span style="color:#f92672">))</span>
+    <span style="color:#66d9ef">val</span> bob<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Person</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Bob&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">29</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">Address</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;2 Java Ave.&#34;</span><span style="color:#f92672">,</span>
+<span style="color:#e6db74">&#34;Miami&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;USA&#34;</span><span style="color:#f92672">))</span>
+    <span style="color:#66d9ef">val</span> charlie<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Person</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Charlie&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">32</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">Address</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;3 Python
+</span><span style="color:#e6db74">Ct.&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Boston&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;USA&#34;</span><span style="color:#f92672">))</span>
+   <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>person <span style="color:#66d9ef">&lt;-</span> <span style="color:#a6e22e">Seq</span><span style="color:#f92672">(</span>alice<span style="color:#f92672">,</span>bob<span style="color:#f92672">,</span>charlie<span style="color:#f92672">)){</span>
+     person <span style="color:#66d9ef">match</span><span style="color:#f92672">{</span>
+       <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Alice&#34;</span><span style="color:#f92672">,</span><span style="color:#ae81ff">25</span><span style="color:#f92672">,</span><span style="color:#a6e22e">Address</span><span style="color:#f92672">(</span><span style="color:#66d9ef">_</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;Chicago&#34;</span><span style="color:#f92672">,</span><span style="color:#66d9ef">_</span><span style="color:#f92672">))</span> <span style="color:#66d9ef">=&gt;</span> println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hi
+</span><span style="color:#e6db74">Alice!&#34;</span><span style="color:#f92672">)</span>
+       <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Bob&#34;</span><span style="color:#f92672">,</span><span style="color:#ae81ff">29</span><span style="color:#f92672">,</span><span style="color:#a6e22e">Address</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;2 Java Ave.&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;Miami&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;USA&#34;</span><span style="color:#f92672">))</span> <span style="color:#66d9ef">=&gt;</span>
+println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hi Bob!&#34;</span><span style="color:#f92672">)</span>
+       <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span>name<span style="color:#f92672">,</span>age<span style="color:#f92672">,</span><span style="color:#66d9ef">_</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> println<span style="color:#f92672">(</span><span style="color:#e6db74">s&#34;Who are,</span><span style="color:#e6db74">$age</span><span style="color:#e6db74"> year-old
+</span><span style="color:#e6db74">person named </span><span style="color:#e6db74">$name</span><span style="color:#e6db74">?&#34;</span><span style="color:#f92672">)</span>
+     <span style="color:#f92672">}</span>
+   <span style="color:#f92672">}</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#a6e22e">Hi</span> <span style="color:#a6e22e">Alice</span><span style="color:#f92672">!</span>
+<span style="color:#a6e22e">Hi</span> <span style="color:#a6e22e">Bob</span><span style="color:#f92672">!</span>
+<span style="color:#a6e22e">Who</span> are<span style="color:#f92672">,</span><span style="color:#ae81ff">32</span> year<span style="color:#f92672">-</span>old person named <span style="color:#a6e22e">Charlie</span><span style="color:#f92672">?</span>
+</code></pre></div><h4 id="35-正则表达式的匹配">3.5 正则表达式的匹配</h4>
+<h5>代码:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">match_regex</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> main<span style="color:#f92672">(</span>args<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">val</span> seq <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Seq</span><span style="color:#f92672">(</span>
+      <span style="color:#e6db74">&#34;Book: title=Programming Scala Second Edition,autjor=Dean
+</span><span style="color:#e6db74">Wample&#34;</span><span style="color:#f92672">,</span>
+      <span style="color:#e6db74">&#34;Magazine: title=the New Yorker,issue=Januray 2014&#34;</span><span style="color:#f92672">,</span>
+      <span style="color:#e6db74">&#34;Unknown: text=Who put this here??&#34;</span>
+   <span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">val</span> <span style="color:#a6e22e">BookExtractorRE</span> <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;&#34;&#34;Book: title=([^,]+),\s+author=(.+)&#34;&#34;&#34;</span><span style="color:#f92672">.</span>r
+    <span style="color:#66d9ef">val</span> <span style="color:#a6e22e">MagazineExtractorRE</span> <span style="color:#66d9ef">=</span> <span style="color:#e6db74">&#34;&#34;&#34;Magazine: title=([^,]+),\s+issue=
+</span><span style="color:#e6db74">(.+)&#34;&#34;&#34;</span><span style="color:#f92672">.</span>r
+      <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>item <span style="color:#66d9ef">&lt;-</span> seq<span style="color:#f92672">){</span>
+      item <span style="color:#66d9ef">match</span><span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">BookExtractorRE</span><span style="color:#f92672">(</span>title<span style="color:#f92672">,</span>author<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+          println<span style="color:#f92672">(</span><span style="color:#e6db74">s&#34;&#34;&#34;Book &#34;</span><span style="color:#e6db74">$title</span><span style="color:#e6db74">&#34;,written by </span><span style="color:#e6db74">$author</span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">MagazineExtractorRE</span><span style="color:#f92672">(</span>title<span style="color:#f92672">,</span>issue<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+          println<span style="color:#f92672">(</span><span style="color:#e6db74">s&#34;&#34;&#34;Magazine &#34;title&#34;,issue </span><span style="color:#e6db74">$issue</span><span style="color:#e6db74"> &#34;&#34;&#34;</span><span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">case</span> entry <span style="color:#66d9ef">=&gt;</span> println<span style="color:#f92672">(</span><span style="color:#e6db74">s&#34;Unrecogized entry: </span><span style="color:#e6db74">$entry</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">)</span>
+     <span style="color:#f92672">}</span>
+   <span style="color:#f92672">}</span>
+ <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h5>输出结果:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#a6e22e">Unrecogized</span> entry<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Book:</span> <span style="color:#66d9ef">title</span><span style="color:#f92672">=</span><span style="color:#a6e22e">Programming</span> <span style="color:#a6e22e">Scala</span> <span style="color:#a6e22e">Second</span>
+<span style="color:#a6e22e">Edition</span><span style="color:#f92672">,</span>autjor<span style="color:#66d9ef">=</span><span style="color:#a6e22e">Dean</span> <span style="color:#a6e22e">Wample</span>
+<span style="color:#a6e22e">Unrecogized</span> entry<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Magazine:</span> <span style="color:#66d9ef">title</span><span style="color:#f92672">=</span>the <span style="color:#a6e22e">New</span> <span style="color:#a6e22e">Yorker</span><span style="color:#f92672">,</span>issue<span style="color:#66d9ef">=</span><span style="color:#a6e22e">Januray</span> <span style="color:#ae81ff">2014</span>
+<span style="color:#a6e22e">Unrecogized</span> entry<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unknown:</span> <span style="color:#66d9ef">text</span><span style="color:#f92672">=</span><span style="color:#a6e22e">Who</span> put <span style="color:#66d9ef">this</span> here<span style="color:#f92672">??</span>
+</code></pre></div>
+    </div>
+</div><div id="social-media-share" class="has-text-centered">
+	<p><i>Sharing is caring!</i></p>
+	<br>
+	
+	<div class="share-buttons">
+	    <a  href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsmydddd.github.io%2fposts%2fscala%25E7%25BC%2596%25E7%25A8%258B%25E5%259F%25BA%25E7%25A1%2580%2f"
+	        onclick="socialMediaPopUp(this.href, '', 500, 500); return false;"
+	        title="Share on Facebook. Opens in a new window.">
+	        <img src=/img/icons/45px/facebook.png>
+	    </a>
+
+	    <a  href="https://twitter.com/intent/tweet?text=scala%e5%9f%ba%e7%a1%80&url=https%3a%2f%2fsmydddd.github.io%2fposts%2fscala%25E7%25BC%2596%25E7%25A8%258B%25E5%259F%25BA%25E7%25A1%2580%2f"
+	        onclick="socialMediaPopUp(this.href, '', 500, 500); return false;"
+	        title="Share on Twitter. Opens in a new window." >
+	        <img src=/img/icons/45px/twitter.png>
+	    </a>
+
+		<a  href="http://www.reddit.com/submit?url=https%3a%2f%2fsmydddd.github.io%2fposts%2fscala%25E7%25BC%2596%25E7%25A8%258B%25E5%259F%25BA%25E7%25A1%2580%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Reddit. Opens in a new window." >
+	        <img src=/img/icons/45px/reddit.png>
+	    </a>
+
+	    <a  href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fsmydddd.github.io%2fposts%2fscala%25E7%25BC%2596%25E7%25A8%258B%25E5%259F%25BA%25E7%25A1%2580%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Pinterest. Opens in a new window." >
+	        <img src=/img/icons/45px/pinterest.png>
+	    </a>
+
+	    <a  href="http://www.tumblr.com/share/link?url=https%3a%2f%2fsmydddd.github.io%2fposts%2fscala%25E7%25BC%2596%25E7%25A8%258B%25E5%259F%25BA%25E7%25A1%2580%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Tumblr. Opens in a new window." >
+	        <img src=/img/icons/45px/tumblr.png>
+	    </a>
+
+		<a  href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fsmydddd.github.io%2fposts%2fscala%25E7%25BC%2596%25E7%25A8%258B%25E5%259F%25BA%25E7%25A1%2580%2f
+			&title=scala%e5%9f%ba%e7%a1%80&summary=&source=rafed123.github.io"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on LinkedIn. Opens in a new window." >
+	        <img src=/img/icons/45px/linkedin.png>
+	    </a>
+
+	    <a  href="mailto:?subject=scala%e5%9f%ba%e7%a1%80&amp;body=Check out this site https%3a%2f%2fsmydddd.github.io%2fposts%2fscala%25E7%25BC%2596%25E7%25A8%258B%25E5%259F%25BA%25E7%25A1%2580%2f"
+	        title="Share via Email. Opens in a new window." >
+	        <img src=/img/icons/45px/mail.png>
+	    </a>
+	</div>
+</div>
+
+
+<br>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    (function () {
+        
+        
+        if (window.location.hostname == "localhost")
+            return;
+
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = '';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </div>
+    </div>
+
+<footer class="footer has-background-dark">
+    <div class="content has-text-centered has-text-white">
+        <p>
+            © 2020 Ramium. Powered by
+            <a class="has-text-light" href="https://github.com/gohugoio/hugo" target="_blank">
+            Hugo</a>. Theme
+            <a class="has-text-light" href="https://github.com/rafed123/ramium/" target="_blank">
+                Ramium.
+            </a>
+        </p>
+    </div>
+</footer>
+</body>
+
+</html>
