@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><title>
+    Hadoop伪分布式 | 
+    
+    Mr.Su</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A description for the meta tag of the site
+    ">
+
+
+<meta property="og:title" content="Hadoop伪分布式" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://smydddd.github.io/posts/hadoop%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-06-18T22:38:26&#43;08:00" />
+<meta property="article:modified_time" content="2021-06-18T22:38:26&#43;08:00" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hadoop伪分布式"/>
+<meta name="twitter:description" content=""/>
+
+<meta itemprop="name" content="Hadoop伪分布式">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-06-18T22:38:26&#43;08:00" />
+<meta itemprop="dateModified" content="2021-06-18T22:38:26&#43;08:00" />
+<meta itemprop="wordCount" content="1726">
+<meta itemprop="keywords" content="hadoop," />
+<link rel="canonical" href="https://smydddd.github.io/posts/hadoop%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F/" />
+
+<link rel="icon" type="image/png" href="https://smydddd.github.io/image/favicon.ico">
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bulma.min.css">
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'analytics-code', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script src=/js/ramium.js></script>
+<link rel="stylesheet" href=/css/ramium.css>
+
+
+
+
+
+</head>
+
+<body><nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href=/>
+      
+      <strong>Mr.Su </strong>
+      
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      
+      
+      <a class="navbar-item" href="/">家目录</a>
+      
+      
+      
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">博客</a>
+        <div class="navbar-dropdown">
+          
+          <a class="navbar-item" href="/tags/">标签</a>
+          
+          <a class="navbar-item" href="/posts/">文档</a>
+          
+        </div>
+      </div>
+      
+      
+      
+      <a class="navbar-item" href="/author/">Mr.Su个人生涯</a>
+      
+      
+    </div>
+
+    <div class="navbar-end">
+      
+      <a class="navbar-item navgithub" href="https://github.com/smydddd/smydddd.github.io/" target="_blank">
+        <i class="fa fa-github fa-2x"></i>
+      </a>
+      
+
+      
+      <div class="navbar-item">
+        <form id="cse-search-box-form-id" onsubmit="return executeQuery();" role="search">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input id="cse-search-input-box-id" size=15 class="input" type="text" autocomplete="off"
+                placeholder="&#xf1a0; Google search" style="font-family:Arial, FontAwesome">
+            </div>
+
+            <div class="control">
+              <button type="submit" class="button is-black">
+                <i class="fa fa-search"></i>
+                </a>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</nav><div class="columns is-centered">
+        <div id="page-body" class="column is-7">
+
+<div class="content blog">
+    <h1>Hadoop伪分布式</h1>
+
+    <div id="infobar" class="level is-mobile">
+        <div class="level-left">
+            
+            <div class="level-item">
+                <p class="subtitle info date">Jun 18, 2021
+                </p>
+            </div>
+            
+
+            <div class="level-item">
+                <p class="subtitle info">
+                    10 mins read
+                </p>
+            </div>
+        </div>
+        <div class="level-right is-hidden-touch">
+            <div class="tags">
+                
+                <a class="tag is-dark is-rounded" href="/tags/hadoop">Hadoop</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="tags is-hidden-desktop">
+        
+        <a class="tag is-dark is-rounded" href="/tags/hadoop">Hadoop</a>
+        
+    </div>
+
+    <div class="blog-text">
+        
+
+        <table>
+<thead>
+<tr>
+<th>服务名称</th>
+<th>版本</th>
+<th>主机IP地址</th>
+<th>系统</th>
+<th>用户名</th>
+<th>密码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hadoop</td>
+<td>2.7.1</td>
+<td>10.1.1.101</td>
+<td>centos 7</td>
+<td>root</td>
+<td>password</td>
+</tr>
+<tr>
+<td>SSH</td>
+<td>系统自带</td>
+<td>10.1.1.101</td>
+<td>centos 7</td>
+<td>root</td>
+<td>password</td>
+</tr>
+<tr>
+<td>JAVA</td>
+<td>1.8</td>
+<td>10.1.1.101</td>
+<td>centos 7</td>
+<td>root</td>
+<td>password</td>
+</tr>
+</tbody>
+</table>
+<p><font color="red">注:所有安装包都在/h3cu下</font></p>
+<p>[TOC]</p>
+<h1 id="一基础配置">一、基础配置</h1>
+<ol>
+<li>
+<p>修改主机名为master,并立即生效</p>
+<pre><code class="language-linux" data-lang="linux">[root@localhost ~]# hostnamectl set-hostname master 
+[root@localhost ~]# bash 
+[root@master ~]#
+</code></pre></li>
+<li>
+<p>关闭防火墙，并设置开机不自启</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# systemctl stop firewalld 
+[root@master ~]# systemctl disable firewalld 
+Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
+Removed symlink /etc/systemd/system/basic.target.wants/firewalld.service.
+[root@master ~]# systemctl status  firewalld 
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)
+   Active: inactive (dead)
+
+Jun 19 03:14:25 localhost.localdomain systemd[1]: Starting firewalld - dynamic firewall daemon...
+Jun 19 03:14:26 localhost.localdomain systemd[1]: Started firewalld - dynamic firewall daemon.
+Jun 19 07:46:21 master systemd[1]: Stopping firewalld - dynamic firewall daemon...
+Jun 19 07:46:22 master systemd[1]: Stopped firewalld - dynamic firewall daemon.
+</code></pre></li>
+<li>
+<p>配置/etc/hosts文件</p>
+<ol>
+<li>
+<p>查看IP地址</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN 
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eno16777736: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 00:0c:29:5a:51:a2 brd ff:ff:ff:ff:ff:ff
+    inet 10.1.1.101/24 brd 10.1.1.255 scope global eno16777736
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fe5a:51a2/64 scope link 
+       valid_lft forever preferred_lft forever
+</code></pre></li>
+<li>
+<p>编辑hosts文件</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# echo &quot;10.1.1.101 master&quot; &gt;&gt; /etc/hosts
+</code></pre></li>
+<li>
+<p>测试</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# ping master -c 5
+PING master (10.1.1.101) 56(84) bytes of data.
+64 bytes from master (10.1.1.101): icmp_seq=1 ttl=64 time=0.011 ms
+64 bytes from master (10.1.1.101): icmp_seq=2 ttl=64 time=0.034 ms
+64 bytes from master (10.1.1.101): icmp_seq=3 ttl=64 time=0.025 ms
+64 bytes from master (10.1.1.101): icmp_seq=4 ttl=64 time=0.029 ms
+64 bytes from master (10.1.1.101): icmp_seq=5 ttl=64 time=0.032 ms
+
+--- master ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4028ms
+rtt min/avg/max/mdev = 0.011/0.026/0.034/0.008 ms
+</code></pre></li>
+</ol>
+</li>
+</ol>
+<h1 id="二配置ssh">二、配置SSH</h1>
+<ol>
+<li>
+<p>配置SSH免秘钥登录</p>
+<ol>
+<li>
+<p>生成秘钥文件</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# ssh-keygen -t rsa -P ''
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa): 
+Created directory '/root/.ssh'.
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+9c:5e:0f:f2:6a:f6:c1:c4:5c:40:b9:e8:31:d3:9e:55 root@master
+The key's randomart image is:
++--[ RSA 2048]----+
+|         .o.     |
+|          ..  E  |
+|         o ...   |
+|       .=+o..    |
+|       .S=*o     |
+|       ..*oo     |
+|        . + .    |
+|        o. .     |
+|       o...      |
++-----------------+
+</code></pre></li>
+<li>
+<p>发送公钥</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# ssh-copy-id -i master 
+The authenticity of host 'master (10.1.1.101)' can't be established.
+ECDSA key fingerprint is a2:ec:2f:3a:b9:33:d3:a7:fd:51:9d:d7:cf:ce:fb:ea.
+Are you sure you want to continue connecting (yes/no)? yes
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+root@master's password: 
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   &quot;ssh 'master'&quot;
+and check to make sure that only the key(s) you wanted were added.
+</code></pre></li>
+<li>
+<p>测试登录</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# ssh master 
+Last login: Sat Jun 19 03:20:35 2021 from 10.1.1.1
+</code></pre></li>
+</ol>
+</li>
+</ol>
+<h1 id="三安装java">三、安装Java</h1>
+<ol>
+<li>
+<p>查询本机是否有openjdk，有则卸载</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# rpm -qa |grep openjdk
+</code></pre></li>
+<li>
+<p>将/h3cu下面的java安装到/usr/local/src下</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# tar -xzf /h3cu/jdk-8u144-linux-x64.tar.gz -C /usr/local/src/
+</code></pre></li>
+<li>
+<p>将解压后的java文件重命名为java</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# ll /usr/local/src/
+total 4
+drwxr-xr-x. 8 10 143 4096 Jul 22  2017 jdk1.8.0_144
+[root@master ~]# mv /usr/local/src/jdk1.8.0_144 /usr/local/src/java
+[root@master ~]# ll /usr/local/src/
+total 4
+drwxr-xr-x. 8 10 143 4096 Jul 22  2017 java
+</code></pre></li>
+<li>
+<p>配置java环境变量，仅使当前用户生效</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /root/.bash_profile
+export JAVA_HOME=/usr/local/src/java
+export PATH=$PATH:$JAVA_HOME/bin
+</code></pre></li>
+<li>
+<p>加载环境变量，查看java的版本信息</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# source /root/.bash_profile 
+[root@master ~]# java -version 
+java version &quot;1.8.0_144&quot;
+Java(TM) SE Runtime Environment (build 1.8.0_144-b01)
+Java HotSpot(TM) 64-Bit Server VM (build 25.144-b01, mixed mode)
+</code></pre></li>
+</ol>
+<h1 id="四部署hadoop伪分布式">四、部署hadoop伪分布式</h1>
+<ol>
+<li>
+<p>将/h3cu下的hadoop解压到/usr/lcoal/src下</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# tar -xzf /h3cu/hadoop-2.7.1.tar.gz -C /usr/local/src/
+</code></pre></li>
+<li>
+<p>将解压后的hadoop文件重命名为hadoop</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# ll /usr/local/src/
+total 8
+drwxr-xr-x. 9 10021 10021 4096 Jun 29  2015 hadoop-2.7.1
+drwxr-xr-x. 8    10   143 4096 Jul 22  2017 java
+[root@master ~]# mv /usr/local/src/hadoop-2.7.1 /usr/local/src/hadoop
+[root@master ~]# ll /usr/local/src/
+total 8
+drwxr-xr-x. 9 10021 10021 4096 Jun 29  2015 hadoop
+drwxr-xr-x. 8    10   143 4096 Jul 22  2017 java
+</code></pre></li>
+<li>
+<p>配置hadoop环境变量，仅当前用户生效</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /root/.bash_profile 
+export HADOOP_HOME=/usr/local/src/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+</code></pre></li>
+<li>
+<p>加载环境变量，查看hadoop版本</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# source /root/.bash_profile 
+[root@master ~]# hadoop version 
+Hadoop 2.7.1
+Subversion https://git-wip-us.apache.org/repos/asf/hadoop.git -r 15ecc87ccf4a0228f35af08fc56de536e6ce657a
+Compiled by jenkins on 2015-06-29T06:04Z
+Compiled with protoc 2.5.0
+From source with checksum fc0a1a23fc1868e4d5ee7fa2b28a58a
+This command was run using /usr/local/src/hadoop/share/hadoop/common/hadoop-common-2.7.1.jar
+</code></pre></li>
+<li>
+<p>配置hadoop-env.sh</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/hadoop-env.sh 
+export JAVA_HOME=/usr/local/src/java
+</code></pre></li>
+<li>
+<p>配置core-site.xml</p>
+<ol>
+<li>
+<p>命令</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/core-site.xml 
+</code></pre></li>
+<li>
+<p>配置文件添加内容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--namenode的URL地址(必须写)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>fs.defaultFS<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>hdfs://master:9000<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--SequenceFiles中使用的读/写缓冲区的大小，单位为KB,131072KB默认为64M(该配置可选)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>io.file.buffer.size<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>131072<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+</code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>配置hdfs-site.xml</p>
+<ol>
+<li>
+<p>命令</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/hdfs-site.xml 
+</code></pre></li>
+<li>
+<p>配置文件添加内容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--hadoop的副本数量，默认为3(必须写)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>dfs.replication<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>1<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--在本地文件系统所在的NameNode的存储空间和持续化处理日志(必须写)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>dfs.namenode.name.dir<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>/usr/local/src/hadoop/dfs/name<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--在本地文件系统所在的DataNode的存储空间和持续化处理日志(必须写)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>dfs.datanode.data.dir<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>/usr/local/src/hadoop/dfs/data<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+</code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>配置mapred-site.xml</p>
+<ol>
+<li>
+<p>命令</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# cp /usr/local/src/hadoop/etc/hadoop/mapred-site.xml.template /usr/local/src/hadoop/etc/hadoop/mapred-site.xml
+[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/mapred-site.xml
+</code></pre></li>
+<li>
+<p>配置文件添加内容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>mapreduce.framework.name<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>yarn<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+</code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>配置yarn-site.xml</p>
+<ol>
+<li>
+<p>命令</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/yarn-site.xml 
+</code></pre></li>
+<li>
+<p>配置文件添加内容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>yarn.nodemanager.aux-services<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>mapreduce_shuffle<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+</code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>name进行格式化</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# hdfs namenode -format 
+21/06/19 08:27:08 INFO namenode.NameNode: STARTUP_MSG: 
+/************************************************************
+STARTUP_MSG: Starting NameNode
+STARTUP_MSG:   host = master/10.1.1.101
+STARTUP_MSG:   args = [-format]
+STARTUP_MSG:   version = 2.7.1
+STARTUP_MSG:   classpath = /usr/local/src/hadoop/etc/hadoo(此处省略)
+STARTUP_MSG:   build = https://git-wip-us.apache.org/repos/asf/hadoop.git -r 15ecc87ccf4a0228f35af08fc56de536e6ce657a; compiled by 'jenkins' on 2015-06-29T06:04Z
+STARTUP_MSG:   java = 1.8.0_144
+************************************************************/
+...省略
+21/06/19 08:27:09 INFO namenode.FSImage: Allocated new BlockPoolId: BP-83508879-10.1.1.101-1624062429594
+21/06/19 08:27:09 INFO common.Storage: Storage directory /usr/local/src/hadoop/dfs/name has been successfully formatted.
+21/06/19 08:27:09 INFO namenode.NNStorageRetentionManager: Going to retain 1 images with txid &gt;= 0
+21/06/19 08:27:09 INFO util.ExitUtil: Exiting with status 0
+21/06/19 08:27:09 INFO namenode.NameNode: SHUTDOWN_MSG: 
+/************************************************************
+SHUTDOWN_MSG: Shutting down NameNode at master/10.1.1.101
+************************************************************/
+</code></pre></li>
+<li>
+<p>启动hadoop集群,查看守护进程</p>
+<ol>
+<li>
+<p>启动</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# start-all.sh 
+This script is Deprecated. Instead use start-dfs.sh and start-yarn.sh
+Starting namenodes on [master]
+master: starting namenode, logging to /usr/local/src/hadoop/logs/hadoop-root-namenode-master.out
+The authenticity of host 'localhost (::1)' can't be established.
+ECDSA key fingerprint is a2:ec:2f:3a:b9:33:d3:a7:fd:51:9d:d7:cf:ce:fb:ea.
+Are you sure you want to continue connecting (yes/no)? yes
+localhost: Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.
+localhost: starting datanode, logging to /usr/local/src/hadoop/logs/hadoop-root-datanode-master.out
+Starting secondary namenodes [0.0.0.0]
+The authenticity of host '0.0.0.0 (0.0.0.0)' can't be established.
+ECDSA key fingerprint is a2:ec:2f:3a:b9:33:d3:a7:fd:51:9d:d7:cf:ce:fb:ea.
+Are you sure you want to continue connecting (yes/no)? es
+Please type 'yes' or 'no': yes
+0.0.0.0: Warning: Permanently added '0.0.0.0' (ECDSA) to the list of known hosts.
+0.0.0.0: starting secondarynamenode, logging to /usr/local/src/hadoop/logs/hadoop-root-secondarynamenode-master.out
+starting yarn daemons
+starting resourcemanager, logging to /usr/local/src/hadoop/logs/yarn-root-resourcemanager-master.out
+localhost: starting nodemanager, logging to /usr/local/src/hadoop/logs/yarn-root-nodemanager-master.ou
+</code></pre></li>
+<li>
+<p>jps查看</p>
+<pre><code class="language-linux" data-lang="linux">[root@master ~]# jps
+10802 SecondaryNameNode
+11042 NodeManager
+10948 ResourceManager
+10535 NameNode
+10651 DataNode
+11326 Jps
+</code></pre></li>
+</ol>
+</li>
+</ol>
+
+    </div>
+</div><div id="social-media-share" class="has-text-centered">
+	<p><i>Sharing is caring!</i></p>
+	<br>
+	
+	<div class="share-buttons">
+	    <a  href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsmydddd.github.io%2fposts%2fhadoop%25E4%25BC%25AA%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%2f"
+	        onclick="socialMediaPopUp(this.href, '', 500, 500); return false;"
+	        title="Share on Facebook. Opens in a new window.">
+	        <img src=/img/icons/45px/facebook.png>
+	    </a>
+
+	    <a  href="https://twitter.com/intent/tweet?text=Hadoop%e4%bc%aa%e5%88%86%e5%b8%83%e5%bc%8f&url=https%3a%2f%2fsmydddd.github.io%2fposts%2fhadoop%25E4%25BC%25AA%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%2f"
+	        onclick="socialMediaPopUp(this.href, '', 500, 500); return false;"
+	        title="Share on Twitter. Opens in a new window." >
+	        <img src=/img/icons/45px/twitter.png>
+	    </a>
+
+		<a  href="http://www.reddit.com/submit?url=https%3a%2f%2fsmydddd.github.io%2fposts%2fhadoop%25E4%25BC%25AA%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Reddit. Opens in a new window." >
+	        <img src=/img/icons/45px/reddit.png>
+	    </a>
+
+	    <a  href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fsmydddd.github.io%2fposts%2fhadoop%25E4%25BC%25AA%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Pinterest. Opens in a new window." >
+	        <img src=/img/icons/45px/pinterest.png>
+	    </a>
+
+	    <a  href="http://www.tumblr.com/share/link?url=https%3a%2f%2fsmydddd.github.io%2fposts%2fhadoop%25E4%25BC%25AA%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Tumblr. Opens in a new window." >
+	        <img src=/img/icons/45px/tumblr.png>
+	    </a>
+
+		<a  href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fsmydddd.github.io%2fposts%2fhadoop%25E4%25BC%25AA%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%2f
+			&title=Hadoop%e4%bc%aa%e5%88%86%e5%b8%83%e5%bc%8f&summary=&source=rafed123.github.io"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on LinkedIn. Opens in a new window." >
+	        <img src=/img/icons/45px/linkedin.png>
+	    </a>
+
+	    <a  href="mailto:?subject=Hadoop%e4%bc%aa%e5%88%86%e5%b8%83%e5%bc%8f&amp;body=Check out this site https%3a%2f%2fsmydddd.github.io%2fposts%2fhadoop%25E4%25BC%25AA%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%2f"
+	        title="Share via Email. Opens in a new window." >
+	        <img src=/img/icons/45px/mail.png>
+	    </a>
+	</div>
+</div>
+
+
+<br>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    (function () {
+        
+        
+        if (window.location.hostname == "localhost")
+            return;
+
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'disqus-code';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </div>
+    </div>
+<script async src="https://cse.google.com/cse.js?cx=google-search-code"></script>
+<gcse:searchresults-only></gcse:searchresults-only>
+
+
+<footer class="footer has-background-dark">
+    <div class="content has-text-centered has-text-white">
+        <p>
+            © 2020 Ramium. Powered by
+            <a class="has-text-light" href="https://github.com/gohugoio/hugo" target="_blank">
+            Hugo</a>. Theme
+            <a class="has-text-light" href="https://github.com/rafed123/ramium/" target="_blank">
+                Ramium.
+            </a>
+        </p>
+    </div>
+</footer>
+</body>
+
+</html>
