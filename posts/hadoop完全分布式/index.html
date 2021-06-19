@@ -27,7 +27,7 @@
 <meta itemprop="name" content="Hadoop完全分布式">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-06-18T23:47:58&#43;08:00" />
 <meta itemprop="dateModified" content="2021-06-18T23:47:58&#43;08:00" />
-<meta itemprop="wordCount" content="2594">
+<meta itemprop="wordCount" content="3536">
 <meta itemprop="keywords" content="hadoop," />
 <link rel="canonical" href="https://smydddd.github.io/posts/hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F/" />
 
@@ -147,7 +147,7 @@ if (!doNotTrack) {
 
             <div class="level-item">
                 <p class="subtitle info">
-                    14 mins read
+                    20 mins read
                 </p>
             </div>
         </div>
@@ -172,33 +172,54 @@ if (!doNotTrack) {
         <table>
 <thead>
 <tr>
-<th>IP地址</th>
-<th>用户名</th>
-<th>密码</th>
-<th>主机名</th>
+<th style="text-align:center">IP地址</th>
+<th style="text-align:center">用户名</th>
+<th style="text-align:center">密码</th>
+<th style="text-align:center">主机名</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>10.1.1.101</td>
-<td>root</td>
-<td>password</td>
-<td>master</td>
+<td style="text-align:center">10.1.1.101</td>
+<td style="text-align:center">root</td>
+<td style="text-align:center">password</td>
+<td style="text-align:center">master</td>
 </tr>
 <tr>
-<td>10.1.1.102</td>
-<td>root</td>
-<td>password</td>
-<td>slave1</td>
+<td style="text-align:center">10.1.1.102</td>
+<td style="text-align:center">root</td>
+<td style="text-align:center">password</td>
+<td style="text-align:center">slave1</td>
 </tr>
 <tr>
-<td>10.1.1.103</td>
-<td>root</td>
-<td>password</td>
-<td>slave2</td>
+<td style="text-align:center">10.1.1.103</td>
+<td style="text-align:center">root</td>
+<td style="text-align:center">password</td>
+<td style="text-align:center">slave2</td>
 </tr>
 </tbody>
 </table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">主机名</th>
+<th style="text-align:center">IP</th>
+<th style="text-align:center">服务名</th>
+<th style="text-align:center">用户名</th>
+<th style="text-align:center">密码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">master</td>
+<td style="text-align:center">10.1.1.101</td>
+<td style="text-align:center">mysql</td>
+<td style="text-align:center">root</td>
+<td style="text-align:center">password</td>
+</tr>
+</tbody>
+</table>
+<p><font color="red">注:所有安装包都在/h3cu下,本环境已经安装好mysql</font></p>
 <h1 id="一虚拟机基础配置">一、虚拟机基础配置</h1>
 <ol>
 <li>
@@ -206,22 +227,22 @@ if (!doNotTrack) {
 <ol>
 <li>
 <p>master</p>
-<pre><code class="language-linux" data-lang="linux">[root@localhost ~]# hostnamectl set-hostname master 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@localhost ~]# hostnamectl set-hostname master 
 [root@localhost ~]# bash
 [root@master ~]# 
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>slave1</p>
-<pre><code class="language-linux" data-lang="linux">[root@localhost ~]# hostnamectl set-hostname slave1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@localhost ~]# hostnamectl set-hostname slave1
 [root@localhost ~]# bash 
 [root@slave1 ~]#
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>slave2</p>
-<pre><code class="language-linux" data-lang="linux">[root@localhost ~]# hostnamectl set-hostname slave2
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@localhost ~]# hostnamectl set-hostname slave2
 [root@localhost ~]# bash 
 [root@slave2 ~]# 
-</code></pre></li>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -232,7 +253,7 @@ if (!doNotTrack) {
 <ol>
 <li>
 <p>master</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ip a
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# ip a
 1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN 
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -245,10 +266,10 @@ if (!doNotTrack) {
        valid_lft forever preferred_lft forever
     inet6 fe80::20c:29ff:fe5a:51a2/64 scope link 
        valid_lft forever preferred_lft forever
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>slave1</p>
-<pre><code class="language-linux" data-lang="linux">[root@slave1 ~]# ip a
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@slave1 ~]# ip a
 1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN 
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -261,10 +282,10 @@ if (!doNotTrack) {
        valid_lft forever preferred_lft forever
     inet6 fe80::20c:29ff:fec8:8c15/64 scope link 
        valid_lft forever preferred_lft forever
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>slave2</p>
-<pre><code class="language-linux" data-lang="linux">[root@slave2 ~]# ip a
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@slave2 ~]# ip a
 1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN 
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -278,60 +299,60 @@ if (!doNotTrack) {
     inet6 fe80::20c:29ff:fe43:d407/64 scope link 
        valid_lft forever preferred_lft forever
 
-</code></pre></li>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
 <p>master配置hosts文件</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /etc/hosts
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# vi /etc/hosts
 10.1.1.101 master
 10.1.1.102 slave1
 10.1.1.103 slave2
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>测试连接性</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ping master -c 2
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# ping master -c 2
 PING master (10.1.1.101) 56(84) bytes of data.
 64 bytes from master (10.1.1.101): icmp_seq=1 ttl=64 time=0.137 ms
 64 bytes from master (10.1.1.101): icmp_seq=2 ttl=64 time=0.084 ms
 
 --- master ping statistics ---
-2 packets transmitted, 2 received, 0% packet loss, time 1008ms
-rtt min/avg/max/mdev = 0.084/0.110/0.137/0.028 ms
+2 packets transmitted, 2 received, 0<span style="color:#75715e">% packet loss, time 1008ms
+</span><span style="color:#75715e"></span>rtt min/avg/max/mdev = 0.084/0.110/0.137/0.028 ms
 [root@master ~]# ping slave1 -c 2
 PING slave1 (10.1.1.102) 56(84) bytes of data.
 64 bytes from slave1 (10.1.1.102): icmp_seq=1 ttl=64 time=0.497 ms
 64 bytes from slave1 (10.1.1.102): icmp_seq=2 ttl=64 time=0.388 ms
 
 --- slave1 ping statistics ---
-2 packets transmitted, 2 received, 0% packet loss, time 1003ms
-rtt min/avg/max/mdev = 0.388/0.442/0.497/0.058 ms
+2 packets transmitted, 2 received, 0<span style="color:#75715e">% packet loss, time 1003ms
+</span><span style="color:#75715e"></span>rtt min/avg/max/mdev = 0.388/0.442/0.497/0.058 ms
 [root@master ~]# ping slave2 -c 2
 PING slave2 (10.1.1.103) 56(84) bytes of data.
 64 bytes from slave2 (10.1.1.103): icmp_seq=1 ttl=64 time=0.430 ms
 64 bytes from slave2 (10.1.1.103): icmp_seq=2 ttl=64 time=0.214 ms
 
 --- slave2 ping statistics ---
-2 packets transmitted, 2 received, 0% packet loss, time 1005ms
-rtt min/avg/max/mdev = 0.214/0.322/0.430/0.108 ms
-</code></pre></li>
+2 packets transmitted, 2 received, 0<span style="color:#75715e">% packet loss, time 1005ms
+</span><span style="color:#75715e"></span>rtt min/avg/max/mdev = 0.214/0.322/0.430/0.108 ms
+</code></pre></div></li>
 <li>
 <p>将hosts文件分发给slave1和slave2</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# scp /etc/hosts slave1:/etc/
-The authenticity of host 'slave1 (10.1.1.102)' can't be established.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# scp /etc/hosts slave1:/etc/
+The authenticity of host &#39;slave1 (10.1.1.102)&#39; can&#39;t be established.
 ECDSA key fingerprint is a2:ec:2f:3a:b9:33:d3:a7:fd:51:9d:d7:cf:ce:fb:ea.
 Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'slave1,10.1.1.102' (ECDSA) to the list of known hosts.
-root@slave1's password: 
-hosts                                                                                      100%  212     0.2KB/s   00:00    
-[root@master ~]# scp /etc/hosts slave2:/etc/
-The authenticity of host 'slave2 (10.1.1.103)' can't be established.
+Warning: Permanently added &#39;slave1,10.1.1.102&#39; (ECDSA) to the list of known hosts.
+root@slave1&#39;s password: 
+hosts                                                                                      100<span style="color:#75715e">%  212     0.2KB/s   00:00    
+</span><span style="color:#75715e"></span>[root@master ~]# scp /etc/hosts slave2:/etc/
+The authenticity of host &#39;slave2 (10.1.1.103)&#39; can&#39;t be established.
 ECDSA key fingerprint is a2:ec:2f:3a:b9:33:d3:a7:fd:51:9d:d7:cf:ce:fb:ea.
 Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'slave2,10.1.1.103' (ECDSA) to the list of known hosts.
-root@slave2's password: 
-hosts                                                                                      100%  212     0.2KB/s   00:00    
-</code></pre></li>
+Warning: Permanently added &#39;slave2,10.1.1.103&#39; (ECDSA) to the list of known hosts.
+root@slave2&#39;s password: 
+hosts                                                                                      100<span style="color:#75715e">%  212     0.2KB/s   00:00    
+</span></code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -339,7 +360,7 @@ hosts                                                                           
 <ol>
 <li>
 <p>master</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# systemctl status firewalld 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# systemctl status firewalld 
 ● firewalld.service - firewalld - dynamic firewall daemon
    Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
    Active: active (running) since Sat 2021-06-19 03:14:26 CST; 5h 7min ago
@@ -353,10 +374,10 @@ Jun 19 03:14:26 localhost.localdomain systemd[1]: Started firewalld - dynamic fi
 [root@master ~]# systemctl disable firewalld 
 Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
 Removed symlink /etc/systemd/system/basic.target.wants/firewalld.service.
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>slave1</p>
-<pre><code class="language-linux" data-lang="linux">[root@slave1 ~]# systemctl status firewalld 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@slave1 ~]# systemctl status firewalld 
 ● firewalld.service - firewalld - dynamic firewall daemon
    Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
    Active: active (running) since Sat 2021-06-19 03:14:50 CST; 6h ago
@@ -371,10 +392,10 @@ Jun 19 03:14:50 localhost.localdomain systemd[1]: Started firewalld - dynamic fi
 Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
 Removed symlink /etc/systemd/system/basic.target.wants/firewalld.service.
 
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>slave2</p>
-<pre><code class="language-linux" data-lang="linux">[root@slave2 ~]# systemctl status firewalld 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@slave2 ~]# systemctl status firewalld 
 ● firewalld.service - firewalld - dynamic firewall daemon
    Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
    Active: active (running) since Sat 2021-06-19 03:15:00 CST; 6h ago
@@ -388,7 +409,7 @@ Jun 19 03:15:00 localhost.localdomain systemd[1]: Started firewalld - dynamic fi
 [root@slave2 ~]# systemctl disable firewalld 
 Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
 Removed symlink /etc/systemd/system/basic.target.wants/firewalld.service.
-</code></pre></li>
+</code></pre></div></li>
 </ol>
 </li>
 </ol>
@@ -399,14 +420,14 @@ Removed symlink /etc/systemd/system/basic.target.wants/firewalld.service.
 <ol>
 <li>
 <p>master</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ssh-keygen -t rsa -P ''
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# ssh-keygen -t rsa -P &#39;&#39;
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa): 
 Your identification has been saved in /root/.ssh/id_rsa.
 Your public key has been saved in /root/.ssh/id_rsa.pub.
 The key fingerprint is:
 42:04:1c:9e:1d:ad:f2:ed:ae:4c:21:92:30:9d:3b:f8 root@master
-The key's randomart image is:
+The key&#39;s randomart image is:
 +--[ RSA 2048]----+
 |   .ooo.         |
 | . o.+ ..        |
@@ -418,18 +439,18 @@ The key's randomart image is:
 |     o  .        |
 |      oo.        |
 +-----------------+
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>slave1</p>
-<pre><code class="language-linux" data-lang="linux">[root@slave1 ~]# ssh-keygen -t rsa -P ''
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@slave1 ~]# ssh-keygen -t rsa -P &#39;&#39;
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa): 
-Created directory '/root/.ssh'.
+Created directory &#39;/root/.ssh&#39;.
 Your identification has been saved in /root/.ssh/id_rsa.
 Your public key has been saved in /root/.ssh/id_rsa.pub.
 The key fingerprint is:
 30:22:3d:06:35:2d:ac:65:33:b4:0d:43:c2:ee:d0:c1 root@slave1
-The key's randomart image is:
+The key&#39;s randomart image is:
 +--[ RSA 2048]----+
 | oo=B.           |
 |  E+B*.          |
@@ -441,20 +462,20 @@ The key's randomart image is:
 |                 |
 |                 |
 +-----------------+
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>slave2</p>
-<pre><code class="language-linux" data-lang="linux">[root@slave2 ~]# ssh-keygetn -t rsa -P ''
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@slave2 ~]# ssh-keygetn -t rsa -P &#39;&#39;
 bash: ssh-keygetn: command not found
-[root@slave2 ~]# ssh-keygen -t rsa -P ''
+[root@slave2 ~]# ssh-keygen -t rsa -P &#39;&#39;
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa): 
-Created directory '/root/.ssh'.
+Created directory &#39;/root/.ssh&#39;.
 Your identification has been saved in /root/.ssh/id_rsa.
 Your public key has been saved in /root/.ssh/id_rsa.pub.
 The key fingerprint is:
 a3:01:98:3c:a6:ec:20:d0:57:0b:4b:56:0c:27:cf:c3 root@slave2
-The key's randomart image is:
+The key&#39;s randomart image is:
 +--[ RSA 2048]----+
 |    *++          |
 | o = X..         |
@@ -466,94 +487,93 @@ The key's randomart image is:
 |                 |
 |                 |
 +-----------------+
-</code></pre></li>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
 <p>master像slave1和slave2分发公钥</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ssh-copy-id -i master 
-The authenticity of host 'master (10.1.1.101)' can't be established.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# ssh-copy-id -i master 
+The authenticity of host &#39;master (10.1.1.101)&#39; can&#39;t be established.
 ECDSA key fingerprint is a2:ec:2f:3a:b9:33:d3:a7:fd:51:9d:d7:cf:ce:fb:ea.
 Are you sure you want to continue connecting (yes/no)? yes
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
-root@master's password: 
+root@master&#39;s password: 
 
 Number of key(s) added: 1
 
-Now try logging into the machine, with:   &quot;ssh 'master'&quot;
+Now try logging into the machine, with:   &#34;ssh &#39;master&#39;&#34;
 and check to make sure that only the key(s) you wanted were added.
 
 [root@master ~]# ssh-copy-id -i slave1 
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
-root@slave1's password: 
+root@slave1&#39;s password: 
 
 Number of key(s) added: 1
 
-Now try logging into the machine, with:   &quot;ssh 'slave1'&quot;
+Now try logging into the machine, with:   &#34;ssh &#39;slave1&#39;&#34;
 and check to make sure that only the key(s) you wanted were added.
 
 [root@master ~]# ssh-copy-id -i slave2
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
-root@slave2's password: 
+root@slave2&#39;s password: 
 
 Number of key(s) added: 1
 
-Now try logging into the machine, with:   &quot;ssh 'slave2'&quot;
+Now try logging into the machine, with:   &#34;ssh &#39;slave2&#39;&#34;
 and check to make sure that only the key(s) you wanted were added.
-</code></pre><p>由master登录到slave1</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ssh slave1
+</code></pre></div><p>由master登录到slave1</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# ssh slave1
 Last login: Sat Jun 19 03:21:18 2021 from 10.1.1.1
-</code></pre></li>
+</code></pre></div></li>
 </ol>
 <h1 id="三配置java环境">三、配置java环境</h1>
 <ol>
 <li>
 <p>查询本机是否有openjdk，有则卸载</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# rpm -qa |grep openjdk
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# rpm -qa |grep openjdk
+</code></pre></div></li>
 <li>
 <p>将/h3cu下面的java安装到/usr/local/src下</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# tar -xzf /h3cu/jdk-8u144-linux-x64.tar.gz -C /usr/local/src/
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# tar -xzf /h3cu/jdk-8u144-linux-x64.tar.gz -C /usr/local/src/
+</code></pre></div></li>
 <li>
 <p>将解压后的java文件重命名为java</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# mv /usr/local/src/jdk1.8.0_144 /usr/local/src/java
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# mv /usr/local/src/jdk1.8.0_144 /usr/local/src/java
+</code></pre></div></li>
 <li>
 <p>配置java环境变量，仅使当前用户生效</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /root/.bash_profile
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# vi /root/.bash_profile
 export JAVA_HOME=/usr/local/src/java
-export PATH=$PATH:$JAVA_HOME/bin
-</code></pre></li>
+export PATH=<span style="color:#e6db74">$</span>PATH:<span style="color:#e6db74">$</span>JAVA_HOME/bin
+</code></pre></div></li>
 <li>
 <p>加载环境变量，查看java的版本信息</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# source /root/.bash_profile 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# source /root/.bash_profile 
 [root@master ~]# java -version 
-java version &quot;1.8.0_144&quot;
+java version &#34;1.8.0_144&#34;
 Java(TM) SE Runtime Environment (build 1.8.0_144-b01)
 Java HotSpot(TM) 64-Bit Server VM (build 25.144-b01, mixed mode)
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>将java分发给slave1和slave2</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# scp -r /usr/local/src/java slave1:/usr/local/src/
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# scp -r /usr/local/src/java slave1:/usr/local/src/
 [root@master ~]# scp -r /usr/local/src/java slave2:/usr/local/src/
 [root@master ~]# scp /root/.bash_profile slave1:/root/
 [root@master ~]# scp /root/.bash_profile slave2:/root/
-</code></pre></li>
+</code></pre></div></li>
 </ol>
-<h1 id="四配置hadoop环境">四、配置hadoop环境</h1>
-<h1 id="四部署hadoop伪分布式">四、部署hadoop伪分布式</h1>
+<h1 id="四配置hadoop完全分布式">四、配置hadoop完全分布式</h1>
 <ol>
 <li>
-<p>将/h3cu下的hadoop解压到/usr/lcoal/src下</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# tar -xzf /h3cu/hadoop-2.7.1.tar.gz -C /usr/local/src/
-</code></pre></li>
+<p>将/h3cu下的hadoop解压到/usr/lcoal/src下(master上操作)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# tar -xzf /h3cu/hadoop-2.7.1.tar.gz -C /usr/local/src/
+</code></pre></div></li>
 <li>
 <p>将解压后的hadoop文件重命名为hadoop</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ll /usr/local/src/
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# ll /usr/local/src/
 total 8
 drwxr-xr-x. 9 10021 10021 4096 Jun 29  2015 hadoop-2.7.1
 drwxr-xr-x. 8    10   143 4096 Jul 22  2017 java
@@ -562,16 +582,16 @@ drwxr-xr-x. 8    10   143 4096 Jul 22  2017 java
 total 8
 drwxr-xr-x. 9 10021 10021 4096 Jun 29  2015 hadoop
 drwxr-xr-x. 8    10   143 4096 Jul 22  2017 java
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>配置hadoop环境变量，仅当前用户生效</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /root/.bash_profile 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# vi /root/.bash_profile 
 export HADOOP_HOME=/usr/local/src/hadoop
-export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
-</code></pre></li>
+export PATH=<span style="color:#e6db74">$</span>PATH:<span style="color:#e6db74">$</span>HADOOP_HOME/bin:<span style="color:#e6db74">$</span>HADOOP_HOME<span style="color:#f92672">/</span>sbin
+</code></pre></div></li>
 <li>
 <p>加载环境变量，查看hadoop版本</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# source /root/.bash_profile 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# source /root/.bash_profile 
 [root@master ~]# hadoop version 
 Hadoop 2.7.1
 Subversion https://git-wip-us.apache.org/repos/asf/hadoop.git -r 15ecc87ccf4a0228f35af08fc56de536e6ce657a
@@ -579,19 +599,19 @@ Compiled by jenkins on 2015-06-29T06:04Z
 Compiled with protoc 2.5.0
 From source with checksum fc0a1a23fc1868e4d5ee7fa2b28a58a
 This command was run using /usr/local/src/hadoop/share/hadoop/common/hadoop-common-2.7.1.jar
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>配置hadoop-env.sh</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/hadoop-env.sh 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/hadoop-env.sh 
 export JAVA_HOME=/usr/local/src/java
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>配置core-site.xml</p>
 <ol>
 <li>
 <p>命令</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/core-site.xml 
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/core-site.xml 
+</code></pre></div></li>
 <li>
 <p>配置文件添加内容</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
@@ -604,6 +624,11 @@ export JAVA_HOME=/usr/local/src/java
   <span style="color:#f92672">&lt;name&gt;</span>io.file.buffer.size<span style="color:#f92672">&lt;/name&gt;</span>
   <span style="color:#f92672">&lt;value&gt;</span>131072<span style="color:#f92672">&lt;/value&gt;</span>
 <span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--hadoop临时文件路径(可选配置)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>hadoop.tmp.dir<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>/usr/local/src/hadoop/dfs/tmp<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
 </code></pre></div></li>
 </ol>
 </li>
@@ -612,14 +637,14 @@ export JAVA_HOME=/usr/local/src/java
 <ol>
 <li>
 <p>命令</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/hdfs-site.xml 
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/hdfs-site.xml 
+</code></pre></div></li>
 <li>
 <p>配置文件添加内容</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
   <span style="color:#75715e">&lt;!--hadoop的副本数量，默认为3(必须写)--&gt;</span>
   <span style="color:#f92672">&lt;name&gt;</span>dfs.replication<span style="color:#f92672">&lt;/name&gt;</span>
-  <span style="color:#f92672">&lt;value&gt;</span>1<span style="color:#f92672">&lt;/value&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>3<span style="color:#f92672">&lt;/value&gt;</span>
 <span style="color:#f92672">&lt;/property&gt;</span>
 <span style="color:#f92672">&lt;property&gt;</span>
   <span style="color:#75715e">&lt;!--在本地文件系统所在的NameNode的存储空间和持续化处理日志(必须写)--&gt;</span>
@@ -631,6 +656,11 @@ export JAVA_HOME=/usr/local/src/java
   <span style="color:#f92672">&lt;name&gt;</span>dfs.datanode.data.dir<span style="color:#f92672">&lt;/name&gt;</span>
   <span style="color:#f92672">&lt;value&gt;</span>/usr/local/src/hadoop/dfs/data<span style="color:#f92672">&lt;/value&gt;</span>
 <span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--设置namenode线程，处理datanode发出rpc请求数量（可选配置）--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>dfs.namenode.handler.count<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>100<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
 </code></pre></div></li>
 </ol>
 </li>
@@ -639,9 +669,9 @@ export JAVA_HOME=/usr/local/src/java
 <ol>
 <li>
 <p>命令</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# cp /usr/local/src/hadoop/etc/hadoop/mapred-site.xml.template /usr/local/src/hadoop/etc/hadoop/mapred-site.xml
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# cp /usr/local/src/hadoop/etc/hadoop/mapred-site.xml.template /usr/local/src/hadoop/etc/hadoop/mapred-site.xml
 [root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/mapred-site.xml
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>配置文件添加内容</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
@@ -656,8 +686,8 @@ export JAVA_HOME=/usr/local/src/java
 <ol>
 <li>
 <p>命令</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/yarn-site.xml 
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/yarn-site.xml 
+</code></pre></div></li>
 <li>
 <p>配置文件添加内容</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
@@ -668,8 +698,24 @@ export JAVA_HOME=/usr/local/src/java
 </ol>
 </li>
 <li>
-<p>name进行格式化</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# hdfs namenode -format 
+<p>配置slaves</p>
+</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/slaves
+master
+slave1
+slave2
+</code></pre></div><ol start="11">
+<li>
+<p>将hadoop文件和环境变量文件分发给slave1和slave2</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# scp -r /usr/local/src/hadoop slave1:/usr/local/src/
+[root@slave2 ~]# scp -r /usr/local/src/hadoop slave2:/usr/local/src/
+[root@slave1 ~]# scp /root/.bash_profile slave1:/root
+[root@slave1 ~]# scp /root/.bash_profile slave2:/root
+</code></pre></div></li>
+<li>
+<p>namenode进行格式化</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# hdfs namenode -format 
 21/06/19 08:27:08 INFO namenode.NameNode: STARTUP_MSG: 
 /************************************************************
 STARTUP_MSG: Starting NameNode
@@ -677,7 +723,7 @@ STARTUP_MSG:   host = master/10.1.1.101
 STARTUP_MSG:   args = [-format]
 STARTUP_MSG:   version = 2.7.1
 STARTUP_MSG:   classpath = /usr/local/src/hadoop/etc/hadoo(此处省略)
-STARTUP_MSG:   build = https://git-wip-us.apache.org/repos/asf/hadoop.git -r 15ecc87ccf4a0228f35af08fc56de536e6ce657a; compiled by 'jenkins' on 2015-06-29T06:04Z
+STARTUP_MSG:   build = https://git-wip-us.apache.org/repos/asf/hadoop.git -r 15ecc87ccf4a0228f35af08fc56de536e6ce657a; compiled by &#39;jenkins&#39; on 2015-06-29T06:04Z
 STARTUP_MSG:   java = 1.8.0_144
 ************************************************************/
 ...省略
@@ -689,44 +735,183 @@ STARTUP_MSG:   java = 1.8.0_144
 /************************************************************
 SHUTDOWN_MSG: Shutting down NameNode at master/10.1.1.101
 ************************************************************/
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>启动hadoop集群,查看守护进程</p>
 <ol>
 <li>
 <p>启动</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# start-all.sh 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# start-all.sh 
 This script is Deprecated. Instead use start-dfs.sh and start-yarn.sh
 Starting namenodes on [master]
 master: starting namenode, logging to /usr/local/src/hadoop/logs/hadoop-root-namenode-master.out
-The authenticity of host 'localhost (::1)' can't be established.
-ECDSA key fingerprint is a2:ec:2f:3a:b9:33:d3:a7:fd:51:9d:d7:cf:ce:fb:ea.
-Are you sure you want to continue connecting (yes/no)? yes
-localhost: Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.
-localhost: starting datanode, logging to /usr/local/src/hadoop/logs/hadoop-root-datanode-master.out
+slave1: starting datanode, logging to /usr/local/src/hadoop/logs/hadoop-root-datanode-slave1.out
+slave2: starting datanode, logging to /usr/local/src/hadoop/logs/hadoop-root-datanode-slave2.out
+master: starting datanode, logging to /usr/local/src/hadoop/logs/hadoop-root-datanode-master.out
 Starting secondary namenodes [0.0.0.0]
-The authenticity of host '0.0.0.0 (0.0.0.0)' can't be established.
-ECDSA key fingerprint is a2:ec:2f:3a:b9:33:d3:a7:fd:51:9d:d7:cf:ce:fb:ea.
-Are you sure you want to continue connecting (yes/no)? es
-Please type 'yes' or 'no': yes
-0.0.0.0: Warning: Permanently added '0.0.0.0' (ECDSA) to the list of known hosts.
 0.0.0.0: starting secondarynamenode, logging to /usr/local/src/hadoop/logs/hadoop-root-secondarynamenode-master.out
 starting yarn daemons
 starting resourcemanager, logging to /usr/local/src/hadoop/logs/yarn-root-resourcemanager-master.out
-localhost: starting nodemanager, logging to /usr/local/src/hadoop/logs/yarn-root-nodemanager-master.ou
-</code></pre></li>
+slave1: starting nodemanager, logging to /usr/local/src/hadoop/logs/yarn-root-nodemanager-slave1.out
+slave2: starting nodemanager, logging to /usr/local/src/hadoop/logs/yarn-root-nodemanager-slave2.out
+master: starting nodemanager, logging to /usr/local/src/hadoop/logs/yarn-root-nodemanager-master.out
+</code></pre></div></li>
 <li>
 <p>jps查看</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# jps
+<ol>
+<li>
+<p>master</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# jps
 10802 SecondaryNameNode
 11042 NodeManager
 10948 ResourceManager
 10535 NameNode
 10651 DataNode
 11326 Jps
-</code></pre></li>
+</code></pre></div></li>
+<li>
+<p>slave1</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@slave1 ~]# jps
+2660 NodeManager
+2777 Jps
+2555 DataNode
+</code></pre></div></li>
 </ol>
 </li>
+</ol>
+</li>
+</ol>
+<h1 id="五部署hive组件">五、部署hive组件</h1>
+<ol>
+<li>
+<p>将/h3cu下的hive解压到/usr/lcoal/src下(master上操作)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# tar -xzvf /h3cu/apache-hive-2.0.0-bin.tar.gz -C /usr/local/src/
+</code></pre></div></li>
+<li>
+<p>将解压后的hadoop文件重命名为hadoop</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# mv /usr/local/src/apache-hive-2.0.0-bin /usr/local/src/hive 
+</code></pre></div></li>
+<li>
+<p>配置hadoop环境变量，仅当前用户生效</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# vi /root/.bash_profile 
+export HIVE_HOME=/usr/local/src/hive
+export PATH=<span style="color:#e6db74">$</span>PATH:<span style="color:#e6db74">$</span>HIVE_HOME/bin
+[root@master ~]# source /root/.bash_profile 
+</code></pre></div></li>
+<li>
+<p>解压mysql-connect驱动包，将jar复制到hive的lib目录下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# tar -xzf /h3cu/mysql-connector-java-5.1.27.tar.gz -C /usr/local/src/
+[root@master ~]# cp /usr/local/src/mysql-connector-java-5.1.27/mysql-connector-java-5.1.27-bin.jar /usr/local/src/hive/lib/
+</code></pre></div></li>
+<li>
+<p>配置hive-site.xml</p>
+<ol>
+<li>
+<p>命令</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# cp /usr/local/src/hive/conf/hive-default.xml.template /usr/local/src/hive/conf/hive-site.xml
+[root@master ~]# vi /usr/local/src/hive/conf/hive-site.xml 
+</code></pre></div></li>
+<li>
+<p>内容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--连接数据库URL(必选参数)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>javax.jdo.option.ConnectionURL<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>jdbc:mysql://master:3306/hive?createDatabaseIfNotExist=true&amp;amp;useSSL=false<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--连接数据驱动(必选参数)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>javax.jdo.option.ConnectionDriverName<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>com.mysql.jdbc.Driver<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--数据库连接用户名(必选参数)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>javax.jdo.option.ConnectionUserName<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>root<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--数据库连接密码(必选参数)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>javax.jdo.option.ConnectionPassword<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>password<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--验证元数据的一致性，默认为false(可选参数)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>hive.metastore.schema.verification<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>false<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--指定HDFS内hive数据临时文件存放目录,启动hive&gt;，HDFS自动创建(可选参数)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>hive.exec.scratchdir<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>/hive/warehouse/tmp<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--指定HDFS内hive数据的存放目录，HDFS自动创建(可选参数)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>hive.metastore.warehouse.dir<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>/hive/warehouse/home<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--客户端显示当前数据库名称信息(可选参数)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>hive.cli.print.header<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>true<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--客户端显示当前数据库名称(可选参数)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>hive.cli.print.current.db<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>true<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;property&gt;</span>
+  <span style="color:#75715e">&lt;!--支持正则匹配(可选参数)--&gt;</span>
+  <span style="color:#f92672">&lt;name&gt;</span>hive.support.quoted.identifiers<span style="color:#f92672">&lt;/name&gt;</span>
+  <span style="color:#f92672">&lt;value&gt;</span>none<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+</code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>hive初始化</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# schematool -dbType mysql -initSchema
+which: no hbase in (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/local/mysql/bin:/root/bin:/usr/local/src/java/bin:/usr/local/src/hadoop/bin:/usr/local/src/hadoop/sbin:/root/bin:/usr/local/src/java/bin:/usr/local/src/hadoop/bin:/usr/local/src/hadoop/sbin:/usr/local/src/hive/bin)
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/src/hive/lib/hive-jdbc-2.0.0-standalone.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/src/hive/lib/log4j-slf4j-impl-2.4.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/src/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Metastore connection URL:	 jdbc:mysql://master:3306/hive?createDatabaseIfNotExist=true&amp;useSSL=false
+Metastore Connection Driver :	 com.mysql.jdbc.Driver
+Metastore connection User:	 root
+Starting metastore schema initialization to 2.0.0
+Initialization script hive-schema-2.0.0.mysql.sql
+Initialization script completed
+schemaTool completed
+</code></pre></div></li>
+<li>
+<p>进入hive shell</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">[root@master ~]# hive 
+which: no hbase in (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/local/mysql/bin:/root/bin:/usr/local/src/java/bin:/usr/local/src/hadoop/bin:/usr/local/src/hadoop/sbin:/root/bin:/usr/local/src/java/bin:/usr/local/src/hadoop/bin:/usr/local/src/hadoop/sbin:/usr/local/src/hive/bin)
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/src/hive/lib/hive-jdbc-2.0.0-standalone.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/src/hive/lib/log4j-slf4j-impl-2.4.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/src/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+
+Logging initialized using configuration in jar:file:/usr/local/src/hive/lib/hive-common-2.0.0.jar!/hive-log4j2.properties
+cHive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+hive (default)&gt; show databases;
+OK
+database_name
+default
+Time taken: 0.707 seconds, Fetched: 1 row(s)
+hive (default)&gt; create database test;
+OK
+Time taken: 0.178 seconds
+hive (default)&gt; show databases;
+OK
+database_name
+default
+test
+Time taken: 0.021 seconds, Fetched: 2 row(s)
+</code></pre></div></li>
 </ol>
 
     </div>
