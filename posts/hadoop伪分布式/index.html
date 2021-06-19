@@ -213,13 +213,13 @@ if (!doNotTrack) {
 <ol>
 <li>
 <p>修改主机名为master,并立即生效</p>
-<pre><code class="language-linux" data-lang="linux">[root@localhost ~]# hostnamectl set-hostname master 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@localhost ~]# hostnamectl set-hostname master 
 [root@localhost ~]# bash 
 [root@master ~]#
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>关闭防火墙，并设置开机不自启</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# systemctl stop firewalld 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# systemctl stop firewalld 
 [root@master ~]# systemctl disable firewalld 
 Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
 Removed symlink /etc/systemd/system/basic.target.wants/firewalld.service.
@@ -232,13 +232,13 @@ Jun 19 03:14:25 localhost.localdomain systemd[1]: Starting firewalld - dynamic f
 Jun 19 03:14:26 localhost.localdomain systemd[1]: Started firewalld - dynamic firewall daemon.
 Jun 19 07:46:21 master systemd[1]: Stopping firewalld - dynamic firewall daemon...
 Jun 19 07:46:22 master systemd[1]: Stopped firewalld - dynamic firewall daemon.
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>配置/etc/hosts文件</p>
 <ol>
 <li>
 <p>查看IP地址</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ip a
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# ip a
 1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN 
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -251,14 +251,14 @@ Jun 19 07:46:22 master systemd[1]: Stopped firewalld - dynamic firewall daemon.
        valid_lft forever preferred_lft forever
     inet6 fe80::20c:29ff:fe5a:51a2/64 scope link 
        valid_lft forever preferred_lft forever
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>编辑hosts文件</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# echo &quot;10.1.1.101 master&quot; &gt;&gt; /etc/hosts
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# echo &#34;10.1.1.101 master&#34; &gt;&gt; /etc/hosts
+</code></pre></div></li>
 <li>
 <p>测试</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ping master -c 5
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# ping master -c 5
 PING master (10.1.1.101) 56(84) bytes of data.
 64 bytes from master (10.1.1.101): icmp_seq=1 ttl=64 time=0.011 ms
 64 bytes from master (10.1.1.101): icmp_seq=2 ttl=64 time=0.034 ms
@@ -267,9 +267,9 @@ PING master (10.1.1.101) 56(84) bytes of data.
 64 bytes from master (10.1.1.101): icmp_seq=5 ttl=64 time=0.032 ms
 
 --- master ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 4028ms
-rtt min/avg/max/mdev = 0.011/0.026/0.034/0.008 ms
-</code></pre></li>
+5 packets transmitted, 5 received, 0<span style="color:#75715e">% packet loss, time 4028ms
+</span><span style="color:#75715e"></span>rtt min/avg/max/mdev = 0.011/0.026/0.034/0.008 ms
+</code></pre></div></li>
 </ol>
 </li>
 </ol>
@@ -280,15 +280,15 @@ rtt min/avg/max/mdev = 0.011/0.026/0.034/0.008 ms
 <ol>
 <li>
 <p>生成秘钥文件</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ssh-keygen -t rsa -P ''
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# ssh-keygen -t rsa -P &#39;&#39;
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa): 
-Created directory '/root/.ssh'.
+Created directory &#39;/root/.ssh&#39;.
 Your identification has been saved in /root/.ssh/id_rsa.
 Your public key has been saved in /root/.ssh/id_rsa.pub.
 The key fingerprint is:
 9c:5e:0f:f2:6a:f6:c1:c4:5c:40:b9:e8:31:d3:9e:55 root@master
-The key's randomart image is:
+The key&#39;s randomart image is:
 +--[ RSA 2048]----+
 |         .o.     |
 |          ..  E  |
@@ -300,27 +300,27 @@ The key's randomart image is:
 |        o. .     |
 |       o...      |
 +-----------------+
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>发送公钥</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ssh-copy-id -i master 
-The authenticity of host 'master (10.1.1.101)' can't be established.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# ssh-copy-id -i master 
+The authenticity of host &#39;master (10.1.1.101)&#39; can&#39;t be established.
 ECDSA key fingerprint is a2:ec:2f:3a:b9:33:d3:a7:fd:51:9d:d7:cf:ce:fb:ea.
 Are you sure you want to continue connecting (yes/no)? yes
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
-root@master's password: 
+root@master&#39;s password: 
 
 Number of key(s) added: 1
 
-Now try logging into the machine, with:   &quot;ssh 'master'&quot;
+Now try logging into the machine, with:   &#34;ssh &#39;master&#39;&#34;
 and check to make sure that only the key(s) you wanted were added.
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>测试登录</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ssh master 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# ssh master 
 Last login: Sat Jun 19 03:20:35 2021 from 10.1.1.1
-</code></pre></li>
+</code></pre></div></li>
 </ol>
 </li>
 </ol>
@@ -328,46 +328,46 @@ Last login: Sat Jun 19 03:20:35 2021 from 10.1.1.1
 <ol>
 <li>
 <p>查询本机是否有openjdk，有则卸载</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# rpm -qa |grep openjdk
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# rpm -qa |grep openjdk
+</code></pre></div></li>
 <li>
 <p>将/h3cu下面的java安装到/usr/local/src下</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# tar -xzf /h3cu/jdk-8u144-linux-x64.tar.gz -C /usr/local/src/
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# tar -xzf /h3cu/jdk-8u144-linux-x64.tar.gz -C /usr/local/src/
+</code></pre></div></li>
 <li>
 <p>将解压后的java文件重命名为java</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ll /usr/local/src/
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# ll /usr/local/src/
 total 4
 drwxr-xr-x. 8 10 143 4096 Jul 22  2017 jdk1.8.0_144
 [root@master ~]# mv /usr/local/src/jdk1.8.0_144 /usr/local/src/java
 [root@master ~]# ll /usr/local/src/
 total 4
 drwxr-xr-x. 8 10 143 4096 Jul 22  2017 java
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>配置java环境变量，仅使当前用户生效</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /root/.bash_profile
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# vi /root/.bash_profile
 export JAVA_HOME=/usr/local/src/java
-export PATH=$PATH:$JAVA_HOME/bin
-</code></pre></li>
+export PATH=<span style="color:#e6db74">$</span>PATH:<span style="color:#e6db74">$</span>JAVA_HOME/bin
+</code></pre></div></li>
 <li>
 <p>加载环境变量，查看java的版本信息</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# source /root/.bash_profile 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# source /root/.bash_profile 
 [root@master ~]# java -version 
-java version &quot;1.8.0_144&quot;
+java version &#34;1.8.0_144&#34;
 Java(TM) SE Runtime Environment (build 1.8.0_144-b01)
 Java HotSpot(TM) 64-Bit Server VM (build 25.144-b01, mixed mode)
-</code></pre></li>
+</code></pre></div></li>
 </ol>
 <h1 id="四部署hadoop伪分布式">四、部署hadoop伪分布式</h1>
 <ol>
 <li>
 <p>将/h3cu下的hadoop解压到/usr/lcoal/src下</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# tar -xzf /h3cu/hadoop-2.7.1.tar.gz -C /usr/local/src/
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# tar -xzf /h3cu/hadoop-2.7.1.tar.gz -C /usr/local/src/
+</code></pre></div></li>
 <li>
 <p>将解压后的hadoop文件重命名为hadoop</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# ll /usr/local/src/
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# ll /usr/local/src/
 total 8
 drwxr-xr-x. 9 10021 10021 4096 Jun 29  2015 hadoop-2.7.1
 drwxr-xr-x. 8    10   143 4096 Jul 22  2017 java
@@ -376,16 +376,16 @@ drwxr-xr-x. 8    10   143 4096 Jul 22  2017 java
 total 8
 drwxr-xr-x. 9 10021 10021 4096 Jun 29  2015 hadoop
 drwxr-xr-x. 8    10   143 4096 Jul 22  2017 java
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>配置hadoop环境变量，仅当前用户生效</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /root/.bash_profile 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# vi /root/.bash_profile 
 export HADOOP_HOME=/usr/local/src/hadoop
-export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
-</code></pre></li>
+export PATH=<span style="color:#e6db74">$</span>PATH:<span style="color:#e6db74">$</span>HADOOP_HOME/bin:<span style="color:#e6db74">$</span>HADOOP_HOME<span style="color:#f92672">/</span>sbin
+</code></pre></div></li>
 <li>
 <p>加载环境变量，查看hadoop版本</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# source /root/.bash_profile 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# source /root/.bash_profile 
 [root@master ~]# hadoop version 
 Hadoop 2.7.1
 Subversion https://git-wip-us.apache.org/repos/asf/hadoop.git -r 15ecc87ccf4a0228f35af08fc56de536e6ce657a
@@ -393,19 +393,19 @@ Compiled by jenkins on 2015-06-29T06:04Z
 Compiled with protoc 2.5.0
 From source with checksum fc0a1a23fc1868e4d5ee7fa2b28a58a
 This command was run using /usr/local/src/hadoop/share/hadoop/common/hadoop-common-2.7.1.jar
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>配置hadoop-env.sh</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/hadoop-env.sh 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/hadoop-env.sh 
 export JAVA_HOME=/usr/local/src/java
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>配置core-site.xml</p>
 <ol>
 <li>
 <p>命令</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/core-site.xml 
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/core-site.xml 
+</code></pre></div></li>
 <li>
 <p>配置文件添加内容</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
@@ -426,8 +426,8 @@ export JAVA_HOME=/usr/local/src/java
 <ol>
 <li>
 <p>命令</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/hdfs-site.xml 
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/hdfs-site.xml 
+</code></pre></div></li>
 <li>
 <p>配置文件添加内容</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
@@ -453,9 +453,9 @@ export JAVA_HOME=/usr/local/src/java
 <ol>
 <li>
 <p>命令</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# cp /usr/local/src/hadoop/etc/hadoop/mapred-site.xml.template /usr/local/src/hadoop/etc/hadoop/mapred-site.xml
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# cp /usr/local/src/hadoop/etc/hadoop/mapred-site.xml.template /usr/local/src/hadoop/etc/hadoop/mapred-site.xml
 [root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/mapred-site.xml
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>配置文件添加内容</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
@@ -470,8 +470,8 @@ export JAVA_HOME=/usr/local/src/java
 <ol>
 <li>
 <p>命令</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/yarn-site.xml 
-</code></pre></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# vi /usr/local/src/hadoop/etc/hadoop/yarn-site.xml 
+</code></pre></div></li>
 <li>
 <p>配置文件添加内容</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
@@ -483,7 +483,7 @@ export JAVA_HOME=/usr/local/src/java
 </li>
 <li>
 <p>name进行格式化</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# hdfs namenode -format 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# hdfs namenode -format 
 21/06/19 08:27:08 INFO namenode.NameNode: STARTUP_MSG: 
 /************************************************************
 STARTUP_MSG: Starting NameNode
@@ -491,7 +491,7 @@ STARTUP_MSG:   host = master/10.1.1.101
 STARTUP_MSG:   args = [-format]
 STARTUP_MSG:   version = 2.7.1
 STARTUP_MSG:   classpath = /usr/local/src/hadoop/etc/hadoo(此处省略)
-STARTUP_MSG:   build = https://git-wip-us.apache.org/repos/asf/hadoop.git -r 15ecc87ccf4a0228f35af08fc56de536e6ce657a; compiled by 'jenkins' on 2015-06-29T06:04Z
+STARTUP_MSG:   build = https://git-wip-us.apache.org/repos/asf/hadoop.git -r 15ecc87ccf4a0228f35af08fc56de536e6ce657a; compiled by &#39;jenkins&#39; on 2015-06-29T06:04Z
 STARTUP_MSG:   java = 1.8.0_144
 ************************************************************/
 ...省略
@@ -503,42 +503,42 @@ STARTUP_MSG:   java = 1.8.0_144
 /************************************************************
 SHUTDOWN_MSG: Shutting down NameNode at master/10.1.1.101
 ************************************************************/
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>启动hadoop集群,查看守护进程</p>
 <ol>
 <li>
 <p>启动</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# start-all.sh 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# start-all.sh 
 This script is Deprecated. Instead use start-dfs.sh and start-yarn.sh
 Starting namenodes on [master]
 master: starting namenode, logging to /usr/local/src/hadoop/logs/hadoop-root-namenode-master.out
-The authenticity of host 'localhost (::1)' can't be established.
+The authenticity of host &#39;localhost (::1)&#39; can&#39;t be established.
 ECDSA key fingerprint is a2:ec:2f:3a:b9:33:d3:a7:fd:51:9d:d7:cf:ce:fb:ea.
 Are you sure you want to continue connecting (yes/no)? yes
-localhost: Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.
+localhost: Warning: Permanently added &#39;localhost&#39; (ECDSA) to the list of known hosts.
 localhost: starting datanode, logging to /usr/local/src/hadoop/logs/hadoop-root-datanode-master.out
 Starting secondary namenodes [0.0.0.0]
-The authenticity of host '0.0.0.0 (0.0.0.0)' can't be established.
+The authenticity of host &#39;0.0.0.0 (0.0.0.0)&#39; can&#39;t be established.
 ECDSA key fingerprint is a2:ec:2f:3a:b9:33:d3:a7:fd:51:9d:d7:cf:ce:fb:ea.
 Are you sure you want to continue connecting (yes/no)? es
-Please type 'yes' or 'no': yes
-0.0.0.0: Warning: Permanently added '0.0.0.0' (ECDSA) to the list of known hosts.
+Please type &#39;yes&#39; or &#39;no&#39;: yes
+0.0.0.0: Warning: Permanently added &#39;0.0.0.0&#39; (ECDSA) to the list of known hosts.
 0.0.0.0: starting secondarynamenode, logging to /usr/local/src/hadoop/logs/hadoop-root-secondarynamenode-master.out
 starting yarn daemons
 starting resourcemanager, logging to /usr/local/src/hadoop/logs/yarn-root-resourcemanager-master.out
 localhost: starting nodemanager, logging to /usr/local/src/hadoop/logs/yarn-root-nodemanager-master.ou
-</code></pre></li>
+</code></pre></div></li>
 <li>
 <p>jps查看</p>
-<pre><code class="language-linux" data-lang="linux">[root@master ~]# jps
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex">[root@master ~]# jps
 10802 SecondaryNameNode
 11042 NodeManager
 10948 ResourceManager
 10535 NameNode
 10651 DataNode
 11326 Jps
-</code></pre></li>
+</code></pre></div></li>
 </ol>
 </li>
 </ol>
